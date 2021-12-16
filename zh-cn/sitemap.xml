@@ -2,30 +2,30 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://github.com/ljystu/ljystu.github.io.git/zh-cn/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://ljystu.github.io.git/zh-cn/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://github.com/ljystu/ljystu.github.io.git/categories/"
+                        href="https://ljystu.github.io.git/categories/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="https://github.com/ljystu/ljystu.github.io.git/zh-cn/categories/"
+                    href="https://ljystu.github.io.git/zh-cn/categories/"
                     /></url><url>
-            <loc>https://github.com/ljystu/ljystu.github.io.git/zh-cn/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://ljystu.github.io.git/zh-cn/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://github.com/ljystu/ljystu.github.io.git/tags/"
+                        href="https://ljystu.github.io.git/tags/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="https://github.com/ljystu/ljystu.github.io.git/zh-cn/tags/"
+                    href="https://ljystu.github.io.git/zh-cn/tags/"
                     /></url><url>
-            <loc>https://github.com/ljystu/ljystu.github.io.git/zh-cn/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://ljystu.github.io.git/zh-cn/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://github.com/ljystu/ljystu.github.io.git/"
+                        href="https://ljystu.github.io.git/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="https://github.com/ljystu/ljystu.github.io.git/zh-cn/"
+                    href="https://ljystu.github.io.git/zh-cn/"
                     /></url></urlset>
