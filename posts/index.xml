@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - My New Hugo Site</title>
+        <link>https://github.com/ljystu/ljystu.github.io.git/posts/</link>
+        <description>All Posts | My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Thu, 16 Dec 2021 10:36:32 &#43;0100</lastBuildDate><atom:link href="https://github.com/ljystu/ljystu.github.io.git/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>First_post</title>
+    <link>https://github.com/ljystu/ljystu.github.io.git/first_post/</link>
+    <pubDate>Thu, 16 Dec 2021 10:36:32 &#43;0100</pubDate>
+    <author>Author</author>
+    <guid>https://github.com/ljystu/ljystu.github.io.git/first_post/</guid>
+    <description><![CDATA[Hi this is the first post of mine.
+From now on, my personal working and studying process will be posted here.]]></description>
+</item></channel>
+</rss>
