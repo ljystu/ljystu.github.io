@@ -2,32 +2,33 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://ljystu.github.io.git/first_post/</loc><lastmod>2021-12-16T10:36:32&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://ljystu.github.io.git/</loc><lastmod>2021-12-16T10:36:32&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>http://example.org/first_post/</loc><lastmod>2021-12-16T10:36:32&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/</loc><lastmod>2021-12-16T10:36:32&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://ljystu.github.io.git/zh-cn/"
+                        href="http://example.org/zh-cn/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://ljystu.github.io.git/"
+                    href="http://example.org/"
                     /></url><url>
-            <loc>https://ljystu.github.io.git/posts/</loc><lastmod>2021-12-16T10:36:32&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://ljystu.github.io.git/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>http://example.org/posts/</loc><lastmod>2021-12-16T10:36:32&#43;01:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://example.org/springboot%E6%B3%A8%E8%A7%A3/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://example.org/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://ljystu.github.io.git/zh-cn/categories/"
+                        href="http://example.org/zh-cn/categories/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://ljystu.github.io.git/categories/"
+                    href="http://example.org/categories/"
                     /></url><url>
-            <loc>https://ljystu.github.io.git/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>http://example.org/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://ljystu.github.io.git/zh-cn/tags/"
+                        href="http://example.org/zh-cn/tags/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://ljystu.github.io.git/tags/"
+                    href="http://example.org/tags/"
                     /></url></urlset>
