@@ -8,18 +8,25 @@
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>First_post</title>
-    <link>http://example.org/first_post/</link>
+    <link>http://example.org/springboot%E6%B3%A8%E8%A7%A3/</link>
     <pubDate>Thu, 16 Dec 2021 10:36:32 &#43;0100</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/springboot%E6%B3%A8%E8%A7%A3/</guid>
+    <description><![CDATA[SpringBoot @Configuration 组件添加 源码重点： postProcessBeanDefinitionRegistry 每个registryId唯一 调用processConfigBeanDefinitions将registry中Bean]]></description>
+</item><item>
+    <title></title>
+    <link>http://example.org/docker/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://example.org/docker/</guid>
+    <description><![CDATA[Docker and MySQL 开源应用容器引擎： 将软件编译成镜像，做好配置后发布，保证启动快速。 启动快 占用资源少 体积小 docker主机(Host)：安装了Docke]]></description>
+</item><item>
+    <title>First_post</title>
+    <link>http://example.org/first_post/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://example.org/first_post/</guid>
     <description><![CDATA[Hi this is the first post of mine.
 From now on, my personal working and studying process will be posted here.]]></description>
-</item><item>
-    <title></title>
-    <link>http://example.org/springboot%E6%B3%A8%E8%A7%A3/</link>
-    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/springboot%E6%B3%A8%E8%A7%A3/</guid>
-    <description><![CDATA[@Configuration 组件添加 源码重点： postProcessBeanDefinitionRegistry 每个registryId唯一 调用processConfigBeanDefinitions将registry中Bean进]]></description>
 </item></channel>
 </rss>

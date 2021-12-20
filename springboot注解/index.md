@@ -1,8 +1,11 @@
-# 
+# First_post
 
-@Configuration
 
-###### 组件添加
+# SpringBoot
+
+## @Configuration
+
+### 组件添加
 
 源码重点：
 postProcessBeanDefinitionRegistry
@@ -34,11 +37,11 @@ Lite模式难以声明Bean之间的依赖
 
 #### @ImportResource(classpath:)
 
-肉=若存在较老的组件或使用xml配置的组件，使用此方式引入依赖
+若存在较老的组件或使用xml配置的组件，使用此方式引入依赖
 
 
 
-### 配置绑定
+## 配置绑定
 
 当需要将properties文件中的配置（例：数据库）解析至Bean中 使用以下注解
 
@@ -60,5 +63,27 @@ Lite模式难以声明Bean之间的依赖
 xxxAutoConfiguration  基础配置文件总共127个
 
 但并不是每次导入的配置都会生效，源码内部配合@Conditional注解进行限制加载（按需加载）
+
+
+
+## 默认配置
+
+springboot首先加载所有自动配置类 自动配置类按照条件生效 默认配置类都绑定了文件的值，xxxProperties里面拿 和配置文件进行了绑定
+
+生效的配置类给容器装配置组件 因而实现功能
+
+xxxAuto Configuration --> 组件 --> xxxProperties中拿值 --> applicatio.properties
+
+在默认配置中，使用了大量@conditional 以用户配置优先，用户没有进行配置则使用springboot装配的组件
+
+用户想要定制化进行配置的方法主要有两种：1用户直接自己@Bean替换底层组件 2用户去看这个组件货去的配置文件值并且进行修改
+
+
+
+## Web开发
+
+静态资源的访问首先找Controller内部能否处理，如果不能则交给静态资源处理器（在静态资源文件夹下寻找）
+
+
 
 
