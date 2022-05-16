@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/docker\/"
-        },"genre": "posts","wordcount":  1247 ,
+        },"genre": "posts","wordcount":  1245 ,
         "url": "http:\/\/example.org\/docker\/","datePublished": "2021-02-06T10:36:32+01:00","dateModified": "2021-02-06T10:36:32+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,7 +110,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Docker</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Jingyu Li</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-06">2021-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1247 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-06">2021-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1245 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -139,8 +139,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">`Docker run =docker create+start 创建容器后立即运行 例：docker run -p 3306:3306 --name mysql01 -e MYSQL_ROOT_PASSWORD=mysql -d mysql`
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">`Docker run =docker create+start 创建容器后立即运行 例：docker run -p 3306:3306 --name mysql01 -e MYSQL_ROOT_PASSWORD=mysql -d mysql`
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>-d：后台运行
 -p: 将主机的端口映射到容器的一个端口    主机端口:容器内部的端口</p>
@@ -153,9 +153,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">docker exec -it mysql01 bash <span class="ni">#进入mysql命令行</span> mysql01为container名字
-mysql -h localhost -u root -p mysql#连接
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">docker exec -it mysql01 bash <span class="ni">#进入mysql命令行</span> mysql01为container名字
+</span></span><span class="line"><span class="cl">mysql -h localhost -u root -p mysql#连接
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="mysql常用命令总结">MySQL常用命令总结：</h1>
 <div class="highlight"><div class="chroma">
@@ -199,52 +199,48 @@ mysql -h localhost -u root -p mysql#连接
 </span><span class="lnt">37
 </span><span class="lnt">38
 </span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">show</span><span class="w"> </span><span class="n">databses</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">显示数据库列表</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="n">use</span><span class="w"> </span><span class="n">xxx</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">切换至</span><span class="n">xxx数据库</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">显示数据库表</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">describe</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">显示数据表结构</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="n">databases</span><span class="w"> </span><span class="n">databasename</span><span class="p">;</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tablename</span><span class="p">(</span><span class="err">字段列表</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="o">#</span><span class="err">例：</span><span class="w">
-</span><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">myTable</span><span class="p">(</span><span class="w">
-</span><span class="w"></span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span><span class="w">
-</span><span class="w"></span><span class="n">name</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w">
-</span><span class="w"></span><span class="n">sex</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">);</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">databasename</span><span class="p">;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="o">#</span><span class="err">仅查询前几行</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">values</span><span class="p">();</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">rename</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">newtablename</span><span class="p">;</span><span class="o">#</span><span class="err">表名更改</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">strname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newcoontent</span><span class="p">;</span><span class="o">#</span><span class="err">更新</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">password</span><span class="o">=</span><span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;xxxxx&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="n">flush</span><span class="w"> </span><span class="k">privileges</span><span class="p">;</span><span class="o">#</span><span class="err">修改</span><span class="n">root密码</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="k">user</span><span class="p">();</span><span class="o">#</span><span class="err">显示当前用户</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="p">,</span><span class="k">insert</span><span class="p">...</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">databasename</span><span class="p">.(</span><span class="o">*</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">tablename</span><span class="p">)</span><span class="w"> </span><span class="n">newuusername</span><span class="o">@</span><span class="n">localhost</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s2">&#34;password&#34;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="o">#</span><span class="err">新增用户并限制其登登录权限和地址</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="n">flush</span><span class="w"> </span><span class="k">privileges</span><span class="p">;</span><span class="o">#</span><span class="err">删除用户</span><span class="w">
-</span><span class="w">
-</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">databses</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">显示数据库列表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">use</span><span class="w"> </span><span class="n">xxx</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">切换至</span><span class="n">xxx数据库</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">显示数据库表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">describe</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">显示数据表结构</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="n">databases</span><span class="w"> </span><span class="n">databasename</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tablename</span><span class="p">(</span><span class="err">字段列表</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">例：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">myTable</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">name</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sex</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">databasename</span><span class="p">;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="o">#</span><span class="err">仅查询前几行</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">values</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">rename</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">newtablename</span><span class="p">;</span><span class="o">#</span><span class="err">表名更改</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">strname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newcoontent</span><span class="p">;</span><span class="o">#</span><span class="err">更新</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">password</span><span class="o">=</span><span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;xxxxx&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">flush</span><span class="w"> </span><span class="k">privileges</span><span class="p">;</span><span class="o">#</span><span class="err">修改</span><span class="n">root密码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="k">user</span><span class="p">();</span><span class="o">#</span><span class="err">显示当前用户</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="p">,</span><span class="k">insert</span><span class="p">...</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">databasename</span><span class="p">.(</span><span class="o">*</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">tablename</span><span class="p">)</span><span class="w"> </span><span class="n">newuusername</span><span class="o">@</span><span class="n">localhost</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s2">&#34;password&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">新增用户并限制其登登录权限和地址</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">flush</span><span class="w"> </span><span class="k">privileges</span><span class="p">;</span><span class="o">#</span><span class="err">删除用户</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -276,8 +272,8 @@ mysql -h localhost -u root -p mysql#连接
 </div>
 <div id="comments"></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.90.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jingyu Li</a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Jingyu Li</a></span></div>
         </div>
     </footer></div>
 

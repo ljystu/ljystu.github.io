@@ -1,12 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>My New Hugo Site</title>
-        <link>http://example.org/</link>
-        <description>这是我的全新 Hugo 网站</description>
+        <title>java - Tag - My New Hugo Site</title>
+        <link>http://example.org/tags/java/</link>
+        <description>java - Tag - My New Hugo Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
-            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Sat, 07 May 2022 10:36:32 &#43;0100</lastBuildDate>
-            <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
-        <item>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Sat, 07 May 2022 10:36:32 &#43;0100</lastBuildDate><atom:link href="http://example.org/tags/java/" rel="self" type="application/rss+xml" /><item>
     <title>Restore IP address</title>
     <link>http://example.org/restore-ip-address/</link>
     <pubDate>Sat, 07 May 2022 10:36:32 &#43;0100</pubDate>
@@ -52,20 +50,5 @@ Input: digits = &quot;&quot; Output: [] Example 3:]]></description>
     <author>Author</author>
     <guid>http://example.org/springboot/</guid>
     <description><![CDATA[SpringBoot @Configuration 组件添加 源码重点： postProcessBeanDefinitionRegistry 每个registryId唯一 调用processConfigBeanDefinitions将registry中Bean]]></description>
-</item><item>
-    <title>Docker</title>
-    <link>http://example.org/docker/</link>
-    <pubDate>Sat, 06 Feb 2021 10:36:32 &#43;0100</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/docker/</guid>
-    <description><![CDATA[Docker and MySQL 开源应用容器引擎： 将软件编译成镜像，做好配置后发布，保证启动快速。 启动快 占用资源少 体积小 docker主机(Host)：安装了Docke]]></description>
-</item><item>
-    <title>First_post</title>
-    <link>http://example.org/first_post/</link>
-    <pubDate>Mon, 01 Feb 2021 20:21:10 &#43;0100</pubDate>
-    <author>Author</author>
-    <guid>http://example.org/first_post/</guid>
-    <description><![CDATA[Hi this is the first post of mine.
-From now on, my personal working and studying process will be posted here.]]></description>
 </item></channel>
 </rss>
