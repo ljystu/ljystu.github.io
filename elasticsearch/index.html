@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Elasticsearch - My New Hugo Site</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="Elasticsearch" />
+<meta property="og:description" content="A powerful search engine for large scale data search. Also benefit for log analysis and monitoring. Elasticsearch: store, compute, search data Inverted Index inverted index (also referred to as a postings list, postings file, or inverted file) is a database index storing a mapping from content, such as words or numbers, to its locations in a table, or in a document or a set of documents (named in contrast to" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ljystu.github.io/elasticsearch/" /><meta property="og:image" content="https://ljystu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-06T10:36:32+01:00" />
+<meta property="article:modified_time" content="2022-07-06T10:36:32+01:00" /><meta property="og:site_name" content="My New Hugo Site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://ljystu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Elasticsearch"/>
+<meta name="twitter:description" content="A powerful search engine for large scale data search. Also benefit for log analysis and monitoring. Elasticsearch: store, compute, search data Inverted Index inverted index (also referred to as a postings list, postings file, or inverted file) is a database index storing a mapping from content, such as words or numbers, to its locations in a table, or in a document or a set of documents (named in contrast to"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://ljystu.github.io/elasticsearch/" /><link rel="prev" href="https://ljystu.github.io/rabbitmq/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Elasticsearch",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/ljystu.github.io\/elasticsearch\/"
+        },"genre": "posts","keywords": "Elasticsearch, java","wordcount":  1941 ,
+        "url": "https:\/\/ljystu.github.io\/elasticsearch\/","datePublished": "2022-07-06T10:36:32+01:00","dateModified": "2022-07-06T10:36:32+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jingyu Li"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="My New Hugo Site">Personal Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/projects/"> Projects </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/elasticsearch/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="My New Hugo Site">Personal Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/projects/" title="">Projects</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/elasticsearch/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Jingyu Li</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/tech/"><i class="far fa-folder fa-fw"></i>Tech</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-06">2022-07-06</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-07-06">2022-07-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1941 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#inverted-index">Inverted Index</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#index">Index</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#type">type:</a></li>
+                <li><a href="#index-1">index:</a></li>
+                <li><a href="#analyzer">analyzer:</a></li>
+                <li><a href="#properties">properties:</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#dsl-index-operations">DSL index operations</a></li>
+        <li><a href="#dsl-document-operations">DSL Document operations</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#store">Store</a></li>
+                <li><a href="#search">Search</a>
+                  <ul>
+                    <li><a href="#sort">sort</a></li>
+                    <li><a href="#page">Page</a></li>
+                    <li><a href="#highlight">highlight</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#heading">[</a></li>
+        <li><a href="#autosync-between-database-and-es">AutoSync between database and ES</a></li>
+        <li><a href="#es-cluster">ES Cluster</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>A powerful search engine for large scale data search. Also benefit for log analysis and monitoring.
+Elasticsearch: store, compute, search data</p>
+<h5 id="inverted-index">Inverted Index</h5>
+<p><strong>inverted index</strong> (also referred to as a <strong>postings list</strong>, <strong>postings file</strong>, or <strong>inverted file</strong>) is a <a href="https://en.wikipedia.org/wiki/Database_index" target="_blank" rel="noopener noreffer">database index</a> storing a mapping from content, such as words or numbers, to its locations in a <a href="https://en.wikipedia.org/wiki/Table_%28database%29" target="_blank" rel="noopener noreffer">table</a>, or in a document or a set of documents (named in contrast to a <a href="https://en.wikipedia.org/wiki/Forward_index" target="_blank" rel="noopener noreffer">forward index</a>, which maps from documents to content). The purpose of an inverted index is to allow <strong>fast <strong><a href="https://en.wikipedia.org/wiki/Full-text_search" target="_blank" rel="noopener noreffer"><strong>full-text searches</strong></a></strong>,</strong> at a cost of increased processing when a document is added to the database.</p>
+<ul>
+<li>
+<ol start="0">
+<li>&ldquo;it is what it is&rdquo;</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>&ldquo;what is it&rdquo;</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>&ldquo;it is a banana&rdquo;</li>
+</ol>
+</li>
+</ul>
+<p>We can get the following reverse file index:
+&ldquo;a&rdquo;:      {2}  &ldquo;banana&rdquo;: {2}  &ldquo;is&rdquo;:     {0, 1, 2}  &ldquo;it&rdquo;:     {0, 1, 2}  &ldquo;what&rdquo;:   {0, 1}
+Search criteria &ldquo;what&rdquo; , &ldquo;is&rdquo; and &ldquo;it&rdquo; will correspond to this <a href="https://zh.wikipedia.org/wiki/%E9%9B%86%E5%90%88" target="_blank" rel="noopener noreffer">collection </a>:.
+For the same text, we get the following completely reverse indexes, <a href="https://zh.wikipedia.org/wiki/%E6%96%87%E6%A1%A3" target="_blank" rel="noopener noreffer">document </a>the number and the word result of the current query. <a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener noreffer">Data </a>. Similarly, both the number of documents and the word results Currently queried start from zero. So, &ldquo;banana&rdquo;: {(2, 3)} that is to say, &ldquo;banana&rdquo; is in the third document (), and the position in the third document is the fourth word (address is 3).
+&ldquo;a&rdquo;:      {(2, 2)}
+&ldquo;banana&rdquo;: {(2, 3)}
+&ldquo;is&rdquo;:     {(0, 1), (0, 4), <strong>(1, 1)</strong>, (2, 1)}
+&ldquo;it&rdquo;:     {(0, 0), (0, 3), <strong>(1, 2)</strong>, (2, 0)}<br>
+&ldquo;what&rdquo;:   {(0, 2), <strong>(1, 0)</strong>}</p>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658755030090-bfda40ce-0d8d-4353-a551-3879ac8903de.png#clientId=uc6ebcbda-75f7-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u85044708&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-25%20at%2015.17.06.png&amp;originHeight=375&amp;originWidth=857&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=111747&amp;status=done&amp;style=none&amp;taskId=u8e34b8bb-ac05-4a64-8706-a7b4c6c5845&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658755030090-bfda40ce-0d8d-4353-a551-3879ac8903de.png#clientId=uc6ebcbda-75f7-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u85044708&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-25%20at%2015.17.06.png&amp;originHeight=375&amp;originWidth=857&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=111747&amp;status=done&amp;style=none&amp;taskId=u8e34b8bb-ac05-4a64-8706-a7b4c6c5845&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658755030090-bfda40ce-0d8d-4353-a551-3879ac8903de.png#clientId=uc6ebcbda-75f7-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u85044708&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-25%20at%2015.17.06.png&amp;originHeight=375&amp;originWidth=857&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=111747&amp;status=done&amp;style=none&amp;taskId=u8e34b8bb-ac05-4a64-8706-a7b4c6c5845&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658755030090-bfda40ce-0d8d-4353-a551-3879ac8903de.png#clientId=uc6ebcbda-75f7-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u85044708&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-25%20at%2015.17.06.png&amp;originHeight=375&amp;originWidth=857&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=111747&amp;status=done&amp;style=none&amp;taskId=u8e34b8bb-ac05-4a64-8706-a7b4c6c5845&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658755030090-bfda40ce-0d8d-4353-a551-3879ac8903de.png#clientId=uc6ebcbda-75f7-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u85044708&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-25%20at%2015.17.06.png&amp;originHeight=375&amp;originWidth=857&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=111747&amp;status=done&amp;style=none&amp;taskId=u8e34b8bb-ac05-4a64-8706-a7b4c6c5845&amp;title="
+        title="Screenshot 2022-07-25 at 15.17.06.png"
+    /></p>
+<p>Mysql is suitable for writing and transactions
+Elasticsearch is suitable for largescale data search analysis and computing</p>
+<h3 id="index">Index</h3>
+<h5 id="type">type:</h5>
+<ol>
+<li>text(words that can be seperated), keyword(Should not be seperated: country names)</li>
+<li>Numbers: long, integer, short, byte, double, float</li>
+<li>boolean</li>
+<li>date</li>
+<li>object</li>
+</ol>
+<h5 id="index-1">index:</h5>
+<p>Specifies whether to create an index. The default value is true.</p>
+<h5 id="analyzer">analyzer:</h5>
+<p>Specifies which analyzer to use.</p>
+<h5 id="properties">properties:</h5>
+<p>To specify sub strings</p>
+<h3 id="dsl-index-operations">DSL index operations</h3>
+<p>Create index and mapping using DSL:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">Create</span> <span class="n">index</span>
+</span></span><span class="line"><span class="cl"><span class="n">PUT</span> <span class="o">/</span><span class="n">test</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;mappings&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;properties&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;info&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;text&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;analyzer&#34;</span><span class="o">:</span> <span class="s">&#34;standard&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;email&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;index&#34;</span><span class="o">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;name&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;object&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;properties&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;firstName&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">},</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;lastName&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>inspect, update and delete index</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">search</span>
+</span></span><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">test</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="n">update</span><span class="o">(</span><span class="n">cannot</span> <span class="n">be</span> <span class="n">updated</span><span class="o">,</span> <span class="n">so</span> <span class="n">we</span> <span class="n">need</span> <span class="n">a</span> <span class="n">brand</span> <span class="k">new</span> <span class="n">index</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">PUT</span> <span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">_mapping</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;properties&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;age&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;integer&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="n">delete</span>
+</span></span><span class="line"><span class="cl"><span class="n">DELETE</span> <span class="o">/</span><span class="n">test</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dsl-document-operations">DSL Document operations</h3>
+<p>Insert document</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">Insert</span> <span class="n">a</span> <span class="k">new</span> <span class="n">document</span>
+</span></span><span class="line"><span class="cl"><span class="n">POST</span> <span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">_doc</span><span class="o">/</span><span class="n">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;info&#34;</span><span class="o">:</span> <span class="s">&#34;黑马程序员java讲师&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;email&#34;</span><span class="o">:</span> <span class="s">&#34;112837@qq.com&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;name&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;firstName&#34;</span><span class="o">:</span><span class="s">&#34;云&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;lastName&#34;</span><span class="o">:</span><span class="s">&#34;赵&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>select and delete document</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">查询</span>
+</span></span><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">heima</span><span class="o">/</span><span class="n">_doc</span><span class="o">/</span><span class="n">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="n">删除</span>
+</span></span><span class="line"><span class="cl"><span class="n">DELETE</span> <span class="o">/</span><span class="n">heima</span><span class="o">/</span><span class="n">_doc</span><span class="o">/</span><span class="n">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>update document:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">delete</span> <span class="n">old</span> <span class="n">document</span> <span class="n">and</span> <span class="n">create</span> <span class="n">a</span> <span class="k">new</span> <span class="n">one</span>
+</span></span><span class="line"><span class="cl"><span class="n">PUT</span> <span class="o">/</span><span class="n">heima</span><span class="o">/</span><span class="n">_doc</span><span class="o">/</span><span class="n">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;info&#34;</span><span class="o">:</span> <span class="s">&#34;黑马程序员java讲师&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;email&#34;</span><span class="o">:</span> <span class="s">&#34;112837@qq.com&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;name&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;firstName&#34;</span><span class="o">:</span><span class="s">&#34;云&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;lastName&#34;</span><span class="o">:</span><span class="s">&#34;赵&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">如果id在索引库里面不存在</span><span class="err">，</span><span class="n">并不会报错</span><span class="err">，</span><span class="n">而是直接新增</span><span class="err">，</span><span class="n">如果索引库存在该记录</span><span class="err">，</span><span class="n">就会先删掉该记录</span><span class="err">，</span><span class="n">然后增加一个全新的</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="n">局部修改文档字段</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="n">there</span> <span class="n">has</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="s">&#34;doc&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">POST</span> <span class="o">/</span><span class="n">heima</span><span class="o">/</span><span class="n">_update</span><span class="o">/</span><span class="n">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;doc&#34;</span><span class="o">:</span> <span class="o">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;email&#34;</span><span class="o">:</span><span class="s">&#34;lbwnb@qq.com&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Write DSL statements and create index libraries (equivalent to creating tables in MySQL)</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">酒店的mapping</span>
+</span></span><span class="line"><span class="cl"><span class="n">PUT</span> <span class="o">/</span><span class="n">hotel</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;mappings&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;properties&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;id&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span>         
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;name&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;text&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">,</span> <span class="s">&#34;analyzer&#34;</span><span class="o">:</span> <span class="s">&#34;ik_max_word&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;copy_to&#34;</span><span class="o">:</span> <span class="s">&#34;all&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;address&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">,</span> <span class="s">&#34;index&#34;</span><span class="o">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;price&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;integer&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;score&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;integer&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;brand&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;copy_to&#34;</span><span class="o">:</span> <span class="s">&#34;all&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;city&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;starName&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;business&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;copy_to&#34;</span><span class="o">:</span> <span class="s">&#34;all&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;location&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;geo_point&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">       <span class="s">&#34;pic&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;keyword&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">,</span> <span class="s">&#34;index&#34;</span><span class="o">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;all&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;type&#34;</span><span class="o">:</span> <span class="s">&#34;text&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;analyzer&#34;</span><span class="o">:</span> <span class="s">&#34;ik_max_word&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">use</span> <span class="n">text</span> <span class="n">to</span> <span class="k">do</span> <span class="n">text</span> <span class="n">analysis</span><span class="o">,</span> <span class="n">use</span> <span class="n">keyword</span> <span class="n">to</span> <span class="n">prevent</span> <span class="n">analysis</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">use</span> <span class="n">copy_to</span> <span class="n">to</span> <span class="n">set</span> <span class="n">up</span> <span class="n">group</span> <span class="n">index</span> <span class="n">and</span> <span class="n">search</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="store">Store</h5>
+<p>Restclient</p>
+<h5 id="search">Search</h5>
+<ol>
+<li>search all:</li>
+</ol>
+<p>a. match_all</p>
+<ol start="2">
+<li>full text: analyze user input and search in inverted index
+<ol>
+<li>(match_query, multi_match_query)</li>
+</ol>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">match</span> <span class="n">和</span> <span class="n">multi_match</span>
+</span></span><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;match&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;address&#34;</span><span class="o">:</span> <span class="s">&#34;如家外滩&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;multi_match&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="s">&#34;外滩如家&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;fields&#34;</span><span class="o">:</span> <span class="o">[</span><span class="s">&#34;brand&#34;</span><span class="o">,</span><span class="s">&#34;name&#34;</span><span class="o">,</span><span class="s">&#34;business&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>keyword search: no analysis, search keywords(numbers, date,boolean):
+<ol>
+<li>ids, range, term</li>
+</ol>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">精确查询</span><span class="err">（</span><span class="n">term查询</span><span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;term&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;city&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;value&#34;</span><span class="o">:</span> <span class="s">&#34;上海&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="n">精确查询</span><span class="o">(</span><span class="n">范围range</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;range&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;price&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;gte&#34;</span><span class="o">:</span> <span class="n">100</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;lte&#34;</span><span class="o">:</span> <span class="n">300</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">distance查询</span>
+</span></span><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;geo_distance&#34;</span><span class="o">:{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;distance&#34;</span><span class="o">:</span> <span class="s">&#34;5km&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;location&#34;</span><span class="o">:</span> <span class="s">&#34;31.21, 121.5&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>compound search
+<ol>
+<li>boolean query
+<ol>
+<li>combine multiple query
+<ol>
+<li>must: &amp;&amp;</li>
+<li>should: ||</li>
+<li>must_not: 不算分 not</li>
+<li>filter: 不算分</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;bool&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;must&#34;</span><span class="o">:</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">        <span class="o">{</span><span class="s">&#34;match&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;name&#34;</span><span class="o">:</span> <span class="s">&#34;如家&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">],</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;must_not&#34;</span><span class="o">:</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">        <span class="o">{</span><span class="s">&#34;range&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;price&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;gt&#34;</span><span class="o">:</span> <span class="n">400</span>
+</span></span><span class="line"><span class="cl">          <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">],</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;filter&#34;</span><span class="o">:</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">        <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;geo_distance&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;distance&#34;</span><span class="o">:</span> <span class="s">&#34;100km&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;location&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">              <span class="s">&#34;lat&#34;</span><span class="o">:</span> <span class="n">31</span><span class="o">.</span><span class="na">21</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">              <span class="s">&#34;lon&#34;</span><span class="o">:</span> <span class="n">121</span><span class="o">.</span><span class="na">5</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">          <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>function score
+<ol>
+<li>function score use BM25 algorithm</li>
+</ol>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658842273535-a4354179-51c1-4d81-b189-e5dfcf5db5f5.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=594&amp;id=u67f88ab4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1188&amp;originWidth=2292&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=963736&amp;status=done&amp;style=none&amp;taskId=u57ddb901-d6a3-4d62-a8be-74cacf05eb3&amp;title=&amp;width=1146"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658842273535-a4354179-51c1-4d81-b189-e5dfcf5db5f5.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=594&amp;id=u67f88ab4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1188&amp;originWidth=2292&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=963736&amp;status=done&amp;style=none&amp;taskId=u57ddb901-d6a3-4d62-a8be-74cacf05eb3&amp;title=&amp;width=1146, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658842273535-a4354179-51c1-4d81-b189-e5dfcf5db5f5.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=594&amp;id=u67f88ab4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1188&amp;originWidth=2292&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=963736&amp;status=done&amp;style=none&amp;taskId=u57ddb901-d6a3-4d62-a8be-74cacf05eb3&amp;title=&amp;width=1146 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658842273535-a4354179-51c1-4d81-b189-e5dfcf5db5f5.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=594&amp;id=u67f88ab4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1188&amp;originWidth=2292&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=963736&amp;status=done&amp;style=none&amp;taskId=u57ddb901-d6a3-4d62-a8be-74cacf05eb3&amp;title=&amp;width=1146 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658842273535-a4354179-51c1-4d81-b189-e5dfcf5db5f5.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=594&amp;id=u67f88ab4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1188&amp;originWidth=2292&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=963736&amp;status=done&amp;style=none&amp;taskId=u57ddb901-d6a3-4d62-a8be-74cacf05eb3&amp;title=&amp;width=1146"
+        title="image.png"
+    /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;function_score&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;match&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;address&#34;</span><span class="o">:</span> <span class="s">&#34;外滩&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">},</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;functions&#34;</span><span class="o">:</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">        <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;filter&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s">&#34;term&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">              <span class="s">&#34;brand&#34;</span><span class="o">:</span> <span class="s">&#34;如家&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">          <span class="o">},</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;weight&#34;</span><span class="o">:</span> <span class="n">10</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658843100761-fdbe5a9b-bdd8-4eb8-9c12-acae853a5d01.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=537&amp;id=u83b406a0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1074&amp;originWidth=2276&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=881444&amp;status=done&amp;style=none&amp;taskId=u3c6002d8-909a-4439-a97c-230f0fc15c7&amp;title=&amp;width=1138"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658843100761-fdbe5a9b-bdd8-4eb8-9c12-acae853a5d01.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=537&amp;id=u83b406a0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1074&amp;originWidth=2276&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=881444&amp;status=done&amp;style=none&amp;taskId=u3c6002d8-909a-4439-a97c-230f0fc15c7&amp;title=&amp;width=1138, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658843100761-fdbe5a9b-bdd8-4eb8-9c12-acae853a5d01.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=537&amp;id=u83b406a0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1074&amp;originWidth=2276&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=881444&amp;status=done&amp;style=none&amp;taskId=u3c6002d8-909a-4439-a97c-230f0fc15c7&amp;title=&amp;width=1138 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658843100761-fdbe5a9b-bdd8-4eb8-9c12-acae853a5d01.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=537&amp;id=u83b406a0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1074&amp;originWidth=2276&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=881444&amp;status=done&amp;style=none&amp;taskId=u3c6002d8-909a-4439-a97c-230f0fc15c7&amp;title=&amp;width=1138 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658843100761-fdbe5a9b-bdd8-4eb8-9c12-acae853a5d01.png#clientId=ufd320741-2d8c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=537&amp;id=u83b406a0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1074&amp;originWidth=2276&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=881444&amp;status=done&amp;style=none&amp;taskId=u3c6002d8-909a-4439-a97c-230f0fc15c7&amp;title=&amp;width=1138"
+        title="image.png"
+    /></p>
+<h6 id="sort">sort</h6>
+<p>default: function score
+keyword, numbers, date, location</p>
+<blockquote>
+<p>Note: Elasticsearch won&rsquo;t calculate scores when we are using sorting algorithm to optimize performance</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span> <span class="n">sort排序</span> <span class="n">preice</span> <span class="n">asc</span> <span class="k">if</span> <span class="n">scores</span> <span class="n">are</span> <span class="n">euqal</span>
+</span></span><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;match_all&#34;</span><span class="o">:</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">},</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;sort&#34;</span><span class="o">:</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;score&#34;</span><span class="o">:</span> <span class="s">&#34;desc&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">},</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;price&#34;</span><span class="o">:</span> <span class="s">&#34;asc&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">]</span><span class="n">组合查询</span><span class="o">-</span><span class="n">function</span> <span class="n">score</span> <span class="n">对应的Java</span> <span class="n">RestClient代码</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//距离排序 distance to the location
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;match_all&#34;</span><span class="o">:</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">},</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;sort&#34;</span><span class="o">:</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;_geo_distance&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;location&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;lat&#34;</span><span class="o">:</span> <span class="n">31</span><span class="o">.</span><span class="na">03</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;lon&#34;</span><span class="o">:</span> <span class="n">121</span><span class="o">.</span><span class="na">61</span>
+</span></span><span class="line"><span class="cl">        <span class="o">},</span> 
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;order&#34;</span><span class="o">:</span> <span class="s">&#34;asc&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">,</span> <span class="s">&#34;unit&#34;</span><span class="o">:</span> <span class="s">&#34;km&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="page">Page</h6>
+<p>similar to limit in mysql</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;match_all&#34;</span><span class="o">:</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">},</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;sort&#34;</span><span class="o">:</span> <span class="o">[</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;price&#34;</span><span class="o">:</span> <span class="s">&#34;asc&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">],</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;from&#34;</span><span class="o">:</span> <span class="n">20</span>
+</span></span><span class="line"><span class="cl">  <span class="o">,</span> <span class="s">&#34;size&#34;</span><span class="o">:</span> <span class="n">5</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>But
+Paging problems: the underlying layer of ES is inverted index, which is not conducive to paging, so paging query is a logical paging. For example, starting from 990, you need to intercept 10 pieces of data (10 pieces from 990 to 1000). For ES, you need to first query 0 to 1000 pieces of data, and then logically intercept 10 pieces of data by page. If it is a monomer, it is only a matter of efficiency at most, but if it is a cluster, it will be a bad thing. We need to get 1000 from each of the nodes and re-sort them. Then we get the 10 pieces from 990 to 1000. Too costly when the number is large.</p>
+<h6 id="highlight">highlight</h6>
+<p>highlight the search keyword
+By default, query term and highlight fields must be the same. Use &ldquo;require_field_match&rdquo;: &ldquo;false&rdquo; to highlight any fields.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//match_all cannot be used in the highlight senario
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">GET</span> <span class="o">/</span><span class="n">hotel</span><span class="o">/</span><span class="n">_search</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;query&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;match&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;all&#34;</span><span class="o">:</span> <span class="s">&#34;如家&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">},</span><span class="s">&#34;highlight&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fields&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;name&#34;</span><span class="o">:</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;require_field_match&#34;</span><span class="o">:</span> <span class="s">&#34;false&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="heading">[</h3>
+<p>](<a href="https://blog.csdn.net/weixin_44757863/article/details/120959505%29Aggregations" target="_blank" rel="noopener noreffer">https://blog.csdn.net/weixin_44757863/article/details/120959505)Aggregations</a>
+Aggregations can be used to do analysis, computing and statistics analysis.</p>
+<ol>
+<li>Bucket: grouping
+<ol>
+<li>TermAggregation</li>
+</ol>
+</li>
+</ol>
+<p>By default, return a _count for field of the terms in desc order.
+We can use query to limit range of the TermAggregation.<img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658931921784-a471c6c9-1394-4053-a4c8-dbf7002e21f1.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=585&amp;id=uc5208dbb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1170&amp;originWidth=2130&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=733875&amp;status=done&amp;style=none&amp;taskId=ueef7eb40-e860-46b2-95b3-ad9c0f837e0&amp;title=&amp;width=1065"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658931921784-a471c6c9-1394-4053-a4c8-dbf7002e21f1.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=585&amp;id=uc5208dbb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1170&amp;originWidth=2130&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=733875&amp;status=done&amp;style=none&amp;taskId=ueef7eb40-e860-46b2-95b3-ad9c0f837e0&amp;title=&amp;width=1065, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658931921784-a471c6c9-1394-4053-a4c8-dbf7002e21f1.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=585&amp;id=uc5208dbb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1170&amp;originWidth=2130&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=733875&amp;status=done&amp;style=none&amp;taskId=ueef7eb40-e860-46b2-95b3-ad9c0f837e0&amp;title=&amp;width=1065 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658931921784-a471c6c9-1394-4053-a4c8-dbf7002e21f1.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=585&amp;id=uc5208dbb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1170&amp;originWidth=2130&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=733875&amp;status=done&amp;style=none&amp;taskId=ueef7eb40-e860-46b2-95b3-ad9c0f837e0&amp;title=&amp;width=1065 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658931921784-a471c6c9-1394-4053-a4c8-dbf7002e21f1.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=585&amp;id=uc5208dbb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1170&amp;originWidth=2130&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=733875&amp;status=done&amp;style=none&amp;taskId=ueef7eb40-e860-46b2-95b3-ad9c0f837e0&amp;title=&amp;width=1065"
+        title="image.png"
+    /></p>
+<ol start="2">
+<li>
+<p>Metric:	max, min, avg, stats</p>
+<ol>
+<li>based on the result of BucketAggregation</li>
+</ol>
+</li>
+<li>
+<p>Pipeline</p>
+</li>
+</ol>
+<p>Aggregations of other aggregations(avg of a group)</p>
+<h3 id="autosync-between-database-and-es">AutoSync between database and ES</h3>
+<p>Use rabbitmq messages to decouple the service and update
+<img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1659038518967-d20bb162-0b4e-4de0-bcde-51102d53ed5f.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=598&amp;id=u0311b200&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1196&amp;originWidth=2270&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007277&amp;status=done&amp;style=none&amp;taskId=u5a9c82c6-4c6a-4268-ad7e-fd118187c52&amp;title=&amp;width=1135"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1659038518967-d20bb162-0b4e-4de0-bcde-51102d53ed5f.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=598&amp;id=u0311b200&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1196&amp;originWidth=2270&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007277&amp;status=done&amp;style=none&amp;taskId=u5a9c82c6-4c6a-4268-ad7e-fd118187c52&amp;title=&amp;width=1135, https://cdn.nlark.com/yuque/0/2022/png/26679661/1659038518967-d20bb162-0b4e-4de0-bcde-51102d53ed5f.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=598&amp;id=u0311b200&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1196&amp;originWidth=2270&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007277&amp;status=done&amp;style=none&amp;taskId=u5a9c82c6-4c6a-4268-ad7e-fd118187c52&amp;title=&amp;width=1135 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1659038518967-d20bb162-0b4e-4de0-bcde-51102d53ed5f.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=598&amp;id=u0311b200&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1196&amp;originWidth=2270&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007277&amp;status=done&amp;style=none&amp;taskId=u5a9c82c6-4c6a-4268-ad7e-fd118187c52&amp;title=&amp;width=1135 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1659038518967-d20bb162-0b4e-4de0-bcde-51102d53ed5f.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=598&amp;id=u0311b200&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1196&amp;originWidth=2270&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007277&amp;status=done&amp;style=none&amp;taskId=u5a9c82c6-4c6a-4268-ad7e-fd118187c52&amp;title=&amp;width=1135"
+        title="image.png"
+    /></p>
+<h3 id="es-cluster">ES Cluster</h3>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098426639-3ba56576-cb88-45a5-afe0-91a9238caedc.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=597&amp;id=ubbcc2cc5&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1194&amp;originWidth=2312&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=662060&amp;status=done&amp;style=none&amp;taskId=u8e4dbbd6-aa4b-46de-b7a4-2aaf9656823&amp;title=&amp;width=1156"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098426639-3ba56576-cb88-45a5-afe0-91a9238caedc.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=597&amp;id=ubbcc2cc5&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1194&amp;originWidth=2312&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=662060&amp;status=done&amp;style=none&amp;taskId=u8e4dbbd6-aa4b-46de-b7a4-2aaf9656823&amp;title=&amp;width=1156, https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098426639-3ba56576-cb88-45a5-afe0-91a9238caedc.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=597&amp;id=ubbcc2cc5&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1194&amp;originWidth=2312&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=662060&amp;status=done&amp;style=none&amp;taskId=u8e4dbbd6-aa4b-46de-b7a4-2aaf9656823&amp;title=&amp;width=1156 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098426639-3ba56576-cb88-45a5-afe0-91a9238caedc.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=597&amp;id=ubbcc2cc5&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1194&amp;originWidth=2312&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=662060&amp;status=done&amp;style=none&amp;taskId=u8e4dbbd6-aa4b-46de-b7a4-2aaf9656823&amp;title=&amp;width=1156 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098426639-3ba56576-cb88-45a5-afe0-91a9238caedc.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=597&amp;id=ubbcc2cc5&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1194&amp;originWidth=2312&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=662060&amp;status=done&amp;style=none&amp;taskId=u8e4dbbd6-aa4b-46de-b7a4-2aaf9656823&amp;title=&amp;width=1156"
+        title="image.png"
+    />
+An example of a robust ES cluster.</p>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098932722-ecb4b153-de91-4bc1-871f-da070d31586d.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=582&amp;id=u4fc4172b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1164&amp;originWidth=2398&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=711037&amp;status=done&amp;style=none&amp;taskId=uec28011d-ff47-441d-8732-f5bcdfa50cb&amp;title=&amp;width=1199"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098932722-ecb4b153-de91-4bc1-871f-da070d31586d.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=582&amp;id=u4fc4172b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1164&amp;originWidth=2398&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=711037&amp;status=done&amp;style=none&amp;taskId=uec28011d-ff47-441d-8732-f5bcdfa50cb&amp;title=&amp;width=1199, https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098932722-ecb4b153-de91-4bc1-871f-da070d31586d.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=582&amp;id=u4fc4172b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1164&amp;originWidth=2398&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=711037&amp;status=done&amp;style=none&amp;taskId=uec28011d-ff47-441d-8732-f5bcdfa50cb&amp;title=&amp;width=1199 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098932722-ecb4b153-de91-4bc1-871f-da070d31586d.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=582&amp;id=u4fc4172b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1164&amp;originWidth=2398&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=711037&amp;status=done&amp;style=none&amp;taskId=uec28011d-ff47-441d-8732-f5bcdfa50cb&amp;title=&amp;width=1199 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098932722-ecb4b153-de91-4bc1-871f-da070d31586d.png#clientId=u9985d72f-f14c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=582&amp;id=u4fc4172b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1164&amp;originWidth=2398&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=711037&amp;status=done&amp;style=none&amp;taskId=uec28011d-ff47-441d-8732-f5bcdfa50cb&amp;title=&amp;width=1199"
+        title="image.png"
+    />
+split-brain problem:
+When the master is having network issues for a long time, other nodes notice the situation and decide to elect a node to be the master node, so there will be 2 master nodes when the old master node back online.
+Solving: setting the consensus vote to be (eligible nodes + 1) / 2.(In versions after Elasticsearch 7.0, the number of eligible nodes is automatically calculated, so there are unlikely to be split-brain problem)</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-07-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/elasticsearch/index.md" target="_blank" rel="noopener noreferrer">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="Share on Twitter" data-sharer="twitter" data-url="https://ljystu.github.io/elasticsearch/" data-title="Elasticsearch" data-hashtags="Elasticsearch, java"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Facebook" data-sharer="facebook" data-url="https://ljystu.github.io/elasticsearch/" data-hashtag="Elasticsearch, java"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://ljystu.github.io/elasticsearch/" data-title="Elasticsearch" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Line" data-sharer="line" data-url="https://ljystu.github.io/elasticsearch/" data-title="Elasticsearch"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="Share on 微博" data-sharer="weibo" data-url="https://ljystu.github.io/elasticsearch/" data-title="Elasticsearch"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Myspace" data-sharer="myspace" data-url="https://ljystu.github.io/elasticsearch/" data-title="Elasticsearch" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="Share on Blogger" data-sharer="blogger" data-url="https://ljystu.github.io/elasticsearch/" data-title="Elasticsearch" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Evernote" data-sharer="evernote" data-url="https://ljystu.github.io/elasticsearch/" data-title="Elasticsearch"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/elasticsearch-java/">Elasticsearch, java</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/rabbitmq/" class="prev" rel="prev" title="RabbitMQ"><i class="fas fa-angle-left fa-fw"></i>RabbitMQ</a></div>
+</div>
+<div id="comments"></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Jingyu Li</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

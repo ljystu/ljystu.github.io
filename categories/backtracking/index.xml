@@ -1,0 +1,26 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>backTracking - Category - My New Hugo Site</title>
+        <link>https://ljystu.github.io/categories/backtracking/</link>
+        <description>backTracking - Category - My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Fri, 06 May 2022 10:36:32 &#43;0100</lastBuildDate><atom:link href="https://ljystu.github.io/categories/backtracking/" rel="self" type="application/rss+xml" /><item>
+    <title>Increasing Subsequence</title>
+    <link>https://ljystu.github.io/increasing-subsequences/</link>
+    <pubDate>Fri, 06 May 2022 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://ljystu.github.io/increasing-subsequences/</guid>
+    <description><![CDATA[Leetcode 491 https://leetcode-cn.com/problems/increasing-subsequences/ Given an integer array nums, return all the different possible increasing subsequences of the given array with at least two elements. You may return the answer in any order. The given array may contain duplicates, and two equal integers should also be considered a special case of increasing sequence. Example 1: Input: nums = [4,6,7,7] Output: [[4,6],[4,6,7],[4,6,7,7],[4,7],[4,7,7],[6,7],[6,7,7],[7,7]] Example 2: Input: nums = [4,4,3,2,1] Output: [[4,4]] Constraints: 1]]></description>
+</item><item>
+    <title>Letter combination of a phone number</title>
+    <link>https://ljystu.github.io/letter-combinations-of-a-phone-number/</link>
+    <pubDate>Fri, 06 May 2022 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://ljystu.github.io/letter-combinations-of-a-phone-number/</guid>
+    <description><![CDATA[Leetcode 17 https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
+ Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order. A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+Example 1:
+Input: digits = &ldquo;23&rdquo; Output: [&ldquo;ad&rdquo;,&ldquo;ae&rdquo;,&ldquo;af&rdquo;,&ldquo;bd&rdquo;,&ldquo;be&rdquo;,&ldquo;bf&rdquo;,&ldquo;cd&rdquo;,&ldquo;ce&rdquo;,&ldquo;cf&rdquo;] Example 2:
+Input: digits = &quot;&quot; Output: [] Example 3:]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Spring Cloud, java - Tag - My New Hugo Site</title>
+        <link>https://ljystu.github.io/tags/spring-cloud-java/</link>
+        <description>Spring Cloud, java - Tag - My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Tue, 06 Apr 2021 10:36:32 &#43;0100</lastBuildDate><atom:link href="https://ljystu.github.io/tags/spring-cloud-java/" rel="self" type="application/rss+xml" /><item>
+    <title>Spring Cloud Gateway</title>
+    <link>https://ljystu.github.io/spring-gateway/</link>
+    <pubDate>Tue, 06 Apr 2021 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://ljystu.github.io/spring-gateway/</guid>
+    <description><![CDATA[Using spring cloud gateway can quickly build an API gateway, but before that, let’s introduce some special concepts involved in using spring cloud gateway framework, so as to deepen the understanding of spring cloud gateway and facilitate the later use.
+ Routing: it is a basic component in spring cloud gateway. It is usually composed of an ID, a target URI, and a series of predicates and filters. Predicate: it is the predicate object of Java 8 function library.]]></description>
+</item></channel>
+</rss>
