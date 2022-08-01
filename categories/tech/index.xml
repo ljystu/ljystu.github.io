@@ -1,0 +1,55 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tech - Category - My New Hugo Site</title>
+        <link>https://github.com/ljystu/ljystu.github.io/categories/tech/</link>
+        <description>Tech - Category - My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Wed, 06 Jul 2022 10:36:32 &#43;0100</lastBuildDate><atom:link href="https://github.com/ljystu/ljystu.github.io/categories/tech/" rel="self" type="application/rss+xml" /><item>
+    <title>Elasticsearch</title>
+    <link>https://github.com/ljystu/ljystu.github.io/elasticsearch/</link>
+    <pubDate>Wed, 06 Jul 2022 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://github.com/ljystu/ljystu.github.io/elasticsearch/</guid>
+    <description><![CDATA[A powerful search engine for large scale data search. Also benefit for log analysis and monitoring. Elasticsearch: store, compute, search data Inverted Index inverted index (also referred to as a postings list, postings file, or inverted file) is a database index storing a mapping from content, such as words or numbers, to its locations in a table, or in a document or a set of documents (named in contrast to]]></description>
+</item><item>
+    <title>RabbitMQ</title>
+    <link>https://github.com/ljystu/ljystu.github.io/rabbitmq/</link>
+    <pubDate>Sat, 18 Jun 2022 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://github.com/ljystu/ljystu.github.io/rabbitmq/</guid>
+    <description><![CDATA[Decoupling Event-driven design better performance Problems with Synchronous communication(Feign): 1.Coupling 2.can not handle huge amount of requests in a short time(high concurrency). 3.Waste of resources during waiting 4.Cascade failure: service failed, the cluster fails cascadingly Asynchronous(Event driven design): Use Broker to control events. Service publish events and the others subscribed to the broker waiting for events. Better performance/No cascade failures Advantages of asynchronous communication: Low coupling Improve throughput Fault isolation]]></description>
+</item><item>
+    <title>Redis distributed lock</title>
+    <link>https://github.com/ljystu/ljystu.github.io/redis-distributed-lock/</link>
+    <pubDate>Wed, 18 May 2022 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://github.com/ljystu/ljystu.github.io/redis-distributed-lock/</guid>
+    <description><![CDATA[Distributed lock Under highly concurrent environment, the distributed lock is used to ensure consistency in the database. Here&rsquo;s an example of this.
+Using simple lock:
+1 2 3 4 5 6 7 8 9  stringRedisTemplate.opsForValue().setIfAbsent(&#34;lockKey&#34;, &#34;ljy&#34;); // This is the simplest realization of lock in redis // But this lock will trigger deadlock when the service is down // adding delete won&#39;t help stringTemplate.delete(&#34;lockKey&#34;); // setting expiration time have problem as well stringRedisTemplate.]]></description>
+</item><item>
+    <title>Redis</title>
+    <link>https://github.com/ljystu/ljystu.github.io/redis/</link>
+    <pubDate>Mon, 16 May 2022 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://github.com/ljystu/ljystu.github.io/redis/</guid>
+    <description><![CDATA[Redis Redis with python Simple example of how to use redis as Cache in python:
+If we want to store some info in cache(logo, name), we first can convert them into JSON format and assign a key, and store the info in cache.
+1 2 3  logo = get_logo() #maybe get logo from api json.dumps(logo) #convert to JSON logo_key = f&#34;{symbol}_logo&#34; #naming convention   When we need to use the info, we can first get it from the cache.]]></description>
+</item><item>
+    <title>Spring Cloud Gateway</title>
+    <link>https://github.com/ljystu/ljystu.github.io/spring-gateway/</link>
+    <pubDate>Tue, 06 Apr 2021 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://github.com/ljystu/ljystu.github.io/spring-gateway/</guid>
+    <description><![CDATA[Using spring cloud gateway can quickly build an API gateway, but before that, let’s introduce some special concepts involved in using spring cloud gateway framework, so as to deepen the understanding of spring cloud gateway and facilitate the later use.
+ Routing: it is a basic component in spring cloud gateway. It is usually composed of an ID, a target URI, and a series of predicates and filters. Predicate: it is the predicate object of Java 8 function library.]]></description>
+</item><item>
+    <title>Docker</title>
+    <link>https://github.com/ljystu/ljystu.github.io/docker/</link>
+    <pubDate>Sat, 06 Feb 2021 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://github.com/ljystu/ljystu.github.io/docker/</guid>
+    <description><![CDATA[Docker and MySQL 开源应用容器引擎： 将软件编译成镜像，做好配置后发布，保证启动快速。 启动快 占用资源少 体积小 docker主机(Host)：安装了Docke]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Docker - My New Hugo Site</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="Docker" />
+<meta property="og:description" content="Docker and MySQL 开源应用容器引擎： 将软件编译成镜像，做好配置后发布，保证启动快速。 启动快 占用资源少 体积小 docker主机(Host)：安装了Docke" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://github.com/ljystu/ljystu.github.io/docker/" /><meta property="og:image" content="https://github.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-02-06T10:36:32+01:00" />
+<meta property="article:modified_time" content="2021-02-06T10:36:32+01:00" /><meta property="og:site_name" content="My New Hugo Site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://github.com/logo.png"/>
+
+<meta name="twitter:title" content="Docker"/>
+<meta name="twitter:description" content="Docker and MySQL 开源应用容器引擎： 将软件编译成镜像，做好配置后发布，保证启动快速。 启动快 占用资源少 体积小 docker主机(Host)：安装了Docke"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://github.com/ljystu/ljystu.github.io/docker/" /><link rel="prev" href="https://github.com/ljystu/ljystu.github.io/first_post/" /><link rel="next" href="https://github.com/ljystu/ljystu.github.io/spring-gateway/" /><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/ljystu/ljystu.github.io/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Docker",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/github.com\/ljystu\/ljystu.github.io\/docker\/"
+        },"genre": "posts","keywords": "Docker","wordcount":  1245 ,
+        "url": "https:\/\/github.com\/ljystu\/ljystu.github.io\/docker\/","datePublished": "2021-02-06T10:36:32+01:00","dateModified": "2021-02-06T10:36:32+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jingyu Li"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/ljystu/ljystu.github.io/" title="My New Hugo Site">Personal Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/posts/"> Posts </a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/tags/"> Tags </a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/categories/"> Categories </a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/projects/"> Projects </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/ljystu/ljystu.github.io/docker/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/ljystu/ljystu.github.io/" title="My New Hugo Site">Personal Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/posts/" title="">Posts</a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/tags/" title="">Tags</a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/categories/" title="">Categories</a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/projects/" title="">Projects</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/ljystu/ljystu.github.io/docker/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Docker</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/ljystu/ljystu.github.io/" title="Author" rel=" author" class="author">Jingyu Li</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/ljystu/ljystu.github.io/categories/tech/"><i class="far fa-folder fa-fw"></i>Tech</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-06">2021-02-06</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-02-06">2021-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1245 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#命令总结">命令总结：</a></li>
+    <li><a href="#docker-connect-to-mysql">docker connect to MySQL</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="docker-and-mysql">Docker and MySQL</h1>
+<p>开源应用容器引擎：</p>
+<p>将软件编译成镜像，做好配置后发布，保证启动快速。</p>
+<p>启动快 占用资源少 体积小</p>
+<p>docker主机(Host)：安装了Docker程序的机器（Docker直接安装在操作系统之上）；</p>
+<p>docker客户端(Client)：连接docker主机进行操作；</p>
+<p>docker仓库(Registry)：用来保存各种打包好的软件镜像；</p>
+<p>docker镜像(Images)：软件打包好的镜像；放在docker仓库中；</p>
+<p>docker容器(Container)：镜像启动后的实例称为一个容器；容器是独立运行的一个或一组应用</p>
+<h2 id="命令总结">命令总结：</h2>
+<p>docker pull 下载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">`Docker run =docker create+start 创建容器后立即运行 例：docker run -p 3306:3306 --name mysql01 -e MYSQL_ROOT_PASSWORD=mysql -d mysql`
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>-d：后台运行
+-p: 将主机的端口映射到容器的一个端口    主机端口:容器内部的端口</p>
+<p>docker ps 查看现有所有容器</p>
+<p>docker rm containerID</p>
+<h2 id="docker-connect-to-mysql">docker connect to MySQL</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">docker exec -it mysql01 bash <span class="ni">#进入mysql命令行</span> mysql01为container名字
+</span></span><span class="line"><span class="cl">mysql -h localhost -u root -p mysql#连接
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="mysql常用命令总结">MySQL常用命令总结：</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">databses</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">显示数据库列表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">use</span><span class="w"> </span><span class="n">xxx</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">切换至</span><span class="n">xxx数据库</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">show</span><span class="w"> </span><span class="n">tables</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">显示数据库表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">describe</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="err">显示数据表结构</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="n">databases</span><span class="w"> </span><span class="n">databasename</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tablename</span><span class="p">(</span><span class="err">字段列表</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">例：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">myTable</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">name</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sex</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">databasename</span><span class="p">;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="o">#</span><span class="err">仅查询前几行</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">values</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">rename</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">newtablename</span><span class="p">;</span><span class="o">#</span><span class="err">表名更改</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">strname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newcoontent</span><span class="p">;</span><span class="o">#</span><span class="err">更新</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">update</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">password</span><span class="o">=</span><span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;xxxxx&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">flush</span><span class="w"> </span><span class="k">privileges</span><span class="p">;</span><span class="o">#</span><span class="err">修改</span><span class="n">root密码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="k">user</span><span class="p">();</span><span class="o">#</span><span class="err">显示当前用户</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="p">,</span><span class="k">insert</span><span class="p">...</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">databasename</span><span class="p">.(</span><span class="o">*</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">tablename</span><span class="p">)</span><span class="w"> </span><span class="n">newuusername</span><span class="o">@</span><span class="n">localhost</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s2">&#34;password&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="err">新增用户并限制其登登录权限和地址</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">user</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">flush</span><span class="w"> </span><span class="k">privileges</span><span class="p">;</span><span class="o">#</span><span class="err">删除用户</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-02-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ljystu/ljystu.github.io/docker/index.md" target="_blank" rel="noopener noreferrer">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="Share on Twitter" data-sharer="twitter" data-url="https://github.com/ljystu/ljystu.github.io/docker/" data-title="Docker" data-hashtags="Docker"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Facebook" data-sharer="facebook" data-url="https://github.com/ljystu/ljystu.github.io/docker/" data-hashtag="Docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://github.com/ljystu/ljystu.github.io/docker/" data-title="Docker" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Line" data-sharer="line" data-url="https://github.com/ljystu/ljystu.github.io/docker/" data-title="Docker"><i data-svg-src="/ljystu/ljystu.github.io/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="Share on 微博" data-sharer="weibo" data-url="https://github.com/ljystu/ljystu.github.io/docker/" data-title="Docker"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Myspace" data-sharer="myspace" data-url="https://github.com/ljystu/ljystu.github.io/docker/" data-title="Docker" data-description=""><i data-svg-src="/ljystu/ljystu.github.io/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="Share on Blogger" data-sharer="blogger" data-url="https://github.com/ljystu/ljystu.github.io/docker/" data-title="Docker" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Evernote" data-sharer="evernote" data-url="https://github.com/ljystu/ljystu.github.io/docker/" data-title="Docker"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/ljystu/ljystu.github.io/tags/docker/">Docker</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/ljystu/ljystu.github.io/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ljystu/ljystu.github.io/first_post/" class="prev" rel="prev" title="First_post"><i class="fas fa-angle-left fa-fw"></i>First_post</a>
+            <a href="/ljystu/ljystu.github.io/spring-gateway/" class="next" rel="next" title="Spring Cloud Gateway">Spring Cloud Gateway<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/ljystu/ljystu.github.io/" target="_blank" rel="noopener noreferrer">Jingyu Li</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/katex.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/ljystu/ljystu.github.io/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

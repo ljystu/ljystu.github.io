@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Restore IP address - My New Hugo Site</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="Restore IP address" />
+<meta property="og:description" content="Leetcode 93 https://leetcode-cn.com/problems/restore-ip-addresses/ A valid IP address consists of exactly four integers separated by single dots. Each integer is between 0 and 255 (inclusive) and cannot have leading zeros. For example, &ldquo;0.1.2.201&rdquo; and &ldquo;192.168.1.1&rdquo; are valid IP addresses, but &ldquo;0.011.255.245&rdquo;, &ldquo;192.168.1.312&rdquo; and &ldquo;192.168@1.1&rdquo; are invalid IP addresses. Given a string s containing only digits, return all possible valid IP addresses that can be formed by inserting dots into s. You" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" /><meta property="og:image" content="https://github.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-07T10:36:32+01:00" />
+<meta property="article:modified_time" content="2022-05-07T10:36:32+01:00" /><meta property="og:site_name" content="My New Hugo Site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://github.com/logo.png"/>
+
+<meta name="twitter:title" content="Restore IP address"/>
+<meta name="twitter:description" content="Leetcode 93 https://leetcode-cn.com/problems/restore-ip-addresses/ A valid IP address consists of exactly four integers separated by single dots. Each integer is between 0 and 255 (inclusive) and cannot have leading zeros. For example, &ldquo;0.1.2.201&rdquo; and &ldquo;192.168.1.1&rdquo; are valid IP addresses, but &ldquo;0.011.255.245&rdquo;, &ldquo;192.168.1.312&rdquo; and &ldquo;192.168@1.1&rdquo; are invalid IP addresses. Given a string s containing only digits, return all possible valid IP addresses that can be formed by inserting dots into s. You"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" /><link rel="prev" href="https://github.com/ljystu/ljystu.github.io/%E5%9B%9E%E6%BA%AF%E6%80%BB%E7%BB%93/" /><link rel="next" href="https://github.com/ljystu/ljystu.github.io/redis/" /><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/ljystu/ljystu.github.io/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Restore IP address",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/github.com\/ljystu\/ljystu.github.io\/restore-ip-address\/"
+        },"genre": "posts","keywords": "java","wordcount":  548 ,
+        "url": "https:\/\/github.com\/ljystu\/ljystu.github.io\/restore-ip-address\/","datePublished": "2022-05-07T10:36:32+01:00","dateModified": "2022-05-07T10:36:32+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jingyu Li"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/ljystu/ljystu.github.io/" title="My New Hugo Site">Personal Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/posts/"> Posts </a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/tags/"> Tags </a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/categories/"> Categories </a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/projects/"> Projects </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/ljystu/ljystu.github.io/restore-ip-address/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/ljystu/ljystu.github.io/" title="My New Hugo Site">Personal Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/posts/" title="">Posts</a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/tags/" title="">Tags</a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/categories/" title="">Categories</a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/projects/" title="">Projects</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/ljystu/ljystu.github.io/restore-ip-address/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Restore IP address</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/ljystu/ljystu.github.io/" title="Author" rel=" author" class="author">Jingyu Li</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/ljystu/ljystu.github.io/categories/leetcode/"><i class="far fa-folder fa-fw"></i>Leetcode</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-07">2022-05-07</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-05-07">2022-05-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;548 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>Leetcode 93
+<a href="https://leetcode-cn.com/problems/restore-ip-addresses/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/restore-ip-addresses/</a></p>
+<blockquote>
+<p>A valid IP address consists of exactly four integers separated by single dots. Each integer is between 0 and 255 (inclusive) and cannot have leading zeros.
+For example, &ldquo;0.1.2.201&rdquo; and &ldquo;192.168.1.1&rdquo; are valid IP addresses, but &ldquo;0.011.255.245&rdquo;, &ldquo;192.168.1.312&rdquo; and &ldquo;<a href="mailto:192.168@1.1" rel="">192.168@1.1</a>&rdquo; are invalid IP addresses.
+Given a string s containing only digits, return all possible valid IP addresses that can be formed by inserting dots into s. You are not allowed to reorder or remove any digits in s. You may return the valid IP addresses in any order.</p>
+<p>Example 1:
+Input: s = &ldquo;25525511135&rdquo;
+Output: [&ldquo;255.255.11.135&rdquo;,&ldquo;255.255.111.35&rdquo;]</p>
+<p>Example 2:
+Input: s = &ldquo;0000&rdquo;
+Output: [&ldquo;0.0.0.0&rdquo;]</p>
+<p>Example 3:
+Input: s = &ldquo;101023&rdquo;
+Output: [&ldquo;1.0.10.23&rdquo;,&ldquo;1.0.102.3&rdquo;,&ldquo;10.1.0.23&rdquo;,&ldquo;10.10.2.3&rdquo;,&ldquo;101.0.2.3&rdquo;]
+ 
+Constraints:
+1 &lt;= s.length &lt;= 20
+s consists of digits only.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">restoreIpAddresses</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">12</span><span class="o">)</span> <span class="k">return</span> <span class="n">result</span><span class="o">;</span> <span class="c1">// 算是剪枝了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">backTrack</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// startIndex: 搜索的起始位置， pointNum:添加逗点的数量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">backTrack</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">startIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">pointNum</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">pointNum</span> <span class="o">==</span> <span class="n">3</span><span class="o">)</span> <span class="o">{</span><span class="c1">// 逗点数量为3时，分隔结束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// 判断第四段⼦字符串是否合法，如果合法就放进result中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">isValid</span><span class="o">(</span><span class="n">s</span><span class="o">,</span><span class="n">startIndex</span><span class="o">,</span><span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()-</span><span class="n">1</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">startIndex</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">index</span> <span class="o">+</span> <span class="n">3</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">isValid</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">startIndex</span><span class="o">,</span> <span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;.&#34;</span> <span class="o">+</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>    <span class="c1">//在str的后⾯插⼊⼀个逗点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">pointNum</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">backTrack</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">2</span><span class="o">,</span> <span class="n">pointNum</span><span class="o">);</span><span class="c1">// 插⼊逗点之后下⼀个⼦串的起始位置为i+2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">pointNum</span><span class="o">--;</span><span class="c1">// 回溯
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">2</span><span class="o">);</span><span class="c1">// 回溯删掉逗点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 判断字符串s在左闭⼜闭区间[start, end]所组成的数字是否合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Boolean</span> <span class="nf">isValid</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">start</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">start</span> <span class="o">!=</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 0开头的数字不合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">&gt;</span> <span class="sc">&#39;9&#39;</span> <span class="o">||</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">&lt;</span> <span class="sc">&#39;0&#39;</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 遇到⾮数字字符不合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="o">*</span> <span class="n">10</span> <span class="o">+</span> <span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">&gt;</span> <span class="n">255</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 如果⼤于255了不合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//Still room for improvement
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-05-07</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ljystu/ljystu.github.io/restore-ip-address/index.md" target="_blank" rel="noopener noreferrer">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="Share on Twitter" data-sharer="twitter" data-url="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" data-title="Restore IP address" data-hashtags="java"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Facebook" data-sharer="facebook" data-url="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" data-hashtag="java"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" data-title="Restore IP address" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Line" data-sharer="line" data-url="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" data-title="Restore IP address"><i data-svg-src="/ljystu/ljystu.github.io/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="Share on 微博" data-sharer="weibo" data-url="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" data-title="Restore IP address"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Myspace" data-sharer="myspace" data-url="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" data-title="Restore IP address" data-description=""><i data-svg-src="/ljystu/ljystu.github.io/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="Share on Blogger" data-sharer="blogger" data-url="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" data-title="Restore IP address" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Evernote" data-sharer="evernote" data-url="https://github.com/ljystu/ljystu.github.io/restore-ip-address/" data-title="Restore IP address"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/ljystu/ljystu.github.io/tags/java/">java</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/ljystu/ljystu.github.io/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ljystu/ljystu.github.io/%E5%9B%9E%E6%BA%AF%E6%80%BB%E7%BB%93/" class="prev" rel="prev" title="backtracking summary"><i class="fas fa-angle-left fa-fw"></i>backtracking summary</a>
+            <a href="/ljystu/ljystu.github.io/redis/" class="next" rel="next" title="Redis">Redis<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/ljystu/ljystu.github.io/" target="_blank" rel="noopener noreferrer">Jingyu Li</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/katex.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/ljystu/ljystu.github.io/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

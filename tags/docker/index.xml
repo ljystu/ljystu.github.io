@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Docker - Tag - My New Hugo Site</title>
+        <link>https://github.com/ljystu/ljystu.github.io/tags/docker/</link>
+        <description>Docker - Tag - My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Sat, 06 Feb 2021 10:36:32 &#43;0100</lastBuildDate><atom:link href="https://github.com/ljystu/ljystu.github.io/tags/docker/" rel="self" type="application/rss+xml" /><item>
+    <title>Docker</title>
+    <link>https://github.com/ljystu/ljystu.github.io/docker/</link>
+    <pubDate>Sat, 06 Feb 2021 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://github.com/ljystu/ljystu.github.io/docker/</guid>
+    <description><![CDATA[Docker and MySQL 开源应用容器引擎： 将软件编译成镜像，做好配置后发布，保证启动快速。 启动快 占用资源少 体积小 docker主机(Host)：安装了Docke]]></description>
+</item></channel>
+</rss>

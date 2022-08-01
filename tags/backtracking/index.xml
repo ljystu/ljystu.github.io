@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>backTracking - Tag - My New Hugo Site</title>
+        <link>https://github.com/ljystu/ljystu.github.io/tags/backtracking/</link>
+        <description>backTracking - Tag - My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Fri, 06 May 2022 10:36:32 &#43;0100</lastBuildDate><atom:link href="https://github.com/ljystu/ljystu.github.io/tags/backtracking/" rel="self" type="application/rss+xml" /><item>
+    <title>Letter combination of a phone number</title>
+    <link>https://github.com/ljystu/ljystu.github.io/letter-combinations-of-a-phone-number/</link>
+    <pubDate>Fri, 06 May 2022 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://github.com/ljystu/ljystu.github.io/letter-combinations-of-a-phone-number/</guid>
+    <description><![CDATA[Leetcode 17 https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
+ Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order. A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+Example 1:
+Input: digits = &ldquo;23&rdquo; Output: [&ldquo;ad&rdquo;,&ldquo;ae&rdquo;,&ldquo;af&rdquo;,&ldquo;bd&rdquo;,&ldquo;be&rdquo;,&ldquo;bf&rdquo;,&ldquo;cd&rdquo;,&ldquo;ce&rdquo;,&ldquo;cf&rdquo;] Example 2:
+Input: digits = &quot;&quot; Output: [] Example 3:]]></description>
+</item></channel>
+</rss>

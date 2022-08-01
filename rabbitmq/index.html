@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">RabbitMQ - My New Hugo Site</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="RabbitMQ" />
+<meta property="og:description" content="Decoupling Event-driven design better performance Problems with Synchronous communication(Feign): 1.Coupling 2.can not handle huge amount of requests in a short time(high concurrency). 3.Waste of resources during waiting 4.Cascade failure: service failed, the cluster fails cascadingly Asynchronous(Event driven design): Use Broker to control events. Service publish events and the others subscribed to the broker waiting for events. Better performance/No cascade failures Advantages of asynchronous communication: Low coupling Improve throughput Fault isolation" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://github.com/ljystu/ljystu.github.io/rabbitmq/" /><meta property="og:image" content="https://github.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-18T10:36:32+01:00" />
+<meta property="article:modified_time" content="2022-06-18T10:36:32+01:00" /><meta property="og:site_name" content="My New Hugo Site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://github.com/logo.png"/>
+
+<meta name="twitter:title" content="RabbitMQ"/>
+<meta name="twitter:description" content="Decoupling Event-driven design better performance Problems with Synchronous communication(Feign): 1.Coupling 2.can not handle huge amount of requests in a short time(high concurrency). 3.Waste of resources during waiting 4.Cascade failure: service failed, the cluster fails cascadingly Asynchronous(Event driven design): Use Broker to control events. Service publish events and the others subscribed to the broker waiting for events. Better performance/No cascade failures Advantages of asynchronous communication: Low coupling Improve throughput Fault isolation"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://github.com/ljystu/ljystu.github.io/rabbitmq/" /><link rel="prev" href="https://github.com/ljystu/ljystu.github.io/redis-distributed-lock/" /><link rel="next" href="https://github.com/ljystu/ljystu.github.io/elasticsearch/" /><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/ljystu/ljystu.github.io/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "RabbitMQ",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/github.com\/ljystu\/ljystu.github.io\/rabbitmq\/"
+        },"genre": "posts","keywords": "RabbitMQ","wordcount":  1084 ,
+        "url": "https:\/\/github.com\/ljystu\/ljystu.github.io\/rabbitmq\/","datePublished": "2022-06-18T10:36:32+01:00","dateModified": "2022-06-18T10:36:32+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jingyu Li"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/ljystu/ljystu.github.io/" title="My New Hugo Site">Personal Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/posts/"> Posts </a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/tags/"> Tags </a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/categories/"> Categories </a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/projects/"> Projects </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/ljystu/ljystu.github.io/rabbitmq/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/ljystu/ljystu.github.io/" title="My New Hugo Site">Personal Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/posts/" title="">Posts</a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/tags/" title="">Tags</a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/categories/" title="">Categories</a><a class="menu-item" href="/ljystu/ljystu.github.io/ljystu/ljystu.github.io/projects/" title="">Projects</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/ljystu/ljystu.github.io/rabbitmq/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">RabbitMQ</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/ljystu/ljystu.github.io/" title="Author" rel=" author" class="author">Jingyu Li</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/ljystu/ljystu.github.io/categories/tech/"><i class="far fa-folder fa-fw"></i>Tech</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-18">2022-06-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-18">2022-06-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1084 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#problems-with-synchronous-communicationfeign">Problems with Synchronous communication(Feign):</a></li>
+        <li><a href="#asynchronousevent-driven-design">Asynchronous(Event driven design):</a></li>
+        <li><a href="#rabbitmq">Rabbitmq</a></li>
+        <li><a href="#spring-amqp">Spring amqp</a></li>
+        <li><a href="#topicexchange">TopicExchange</a></li>
+        <li><a href="#reliability">Reliability</a>
+          <ul>
+            <li><a href="#publisher-confirm">publisher confirm:</a></li>
+            <li><a href="#publisher-return">publisher-return:</a></li>
+            <li><a href="#consumer-ack">Consumer Ack:</a></li>
+            <li><a href="#ttl">TTL:</a>
+              <ul>
+                <li><a href="#dlx-dead-letter-exchange">DLX dead letter exchange</a></li>
+              </ul>
+            </li>
+            <li><a href="#dead-letter-queue-summary">Dead letter queue summary:</a></li>
+            <li><a href="#use-plugin-to-create-delayqueue">Use plugin to create delayqueue.</a>
+              <ul>
+                <li><a href="#install">Install:</a></li>
+                <li><a href="#use">Use:</a></li>
+              </ul>
+            </li>
+            <li><a href="#message-stuck">Message stuck</a></li>
+            <li><a href="#lazy-queues">Lazy Queues</a></li>
+          </ul>
+        </li>
+        <li><a href="#mq-cluster">MQ cluster</a>
+          <ul>
+            <li><a href="#classic-cluster">classic cluster</a></li>
+            <li><a href="#image-cluster">Image cluster</a></li>
+            <li><a href="#quorum-queues">Quorum Queues</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><ol>
+<li>Decoupling</li>
+<li>Event-driven design</li>
+<li>better performance</li>
+</ol>
+<h3 id="problems-with-synchronous-communicationfeign">Problems with Synchronous communication(Feign):</h3>
+<p>1.Coupling
+2.can not handle huge amount of requests in a short time(high concurrency).
+3.Waste of resources during waiting
+4.Cascade failure: service failed, the cluster fails cascadingly</p>
+<h3 id="asynchronousevent-driven-design">Asynchronous(Event driven design):</h3>
+<p>Use Broker to control events. Service publish events and the others subscribed to the broker waiting for events.</p>
+<p>Better performance/No cascade failures
+<strong>Advantages of asynchronous communication:</strong></p>
+<ol>
+<li>Low coupling</li>
+<li>Improve throughput</li>
+<li>Fault isolation</li>
+<li>Flow peaking</li>
+</ol>
+<p><strong>Disadvantages of asynchronous communication:</strong></p>
+<ol>
+<li>Rely on Broker&rsquo;s reliability, security and throughput</li>
+<li>The architecture is complicated, the business does not have an obvious process line, which is not easy to track and manage.</li>
+</ol>
+<h3 id="rabbitmq">Rabbitmq</h3>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657740162373-0bdb6942-c61b-49ad-9ee5-01129b7007fb.png#clientId=u02baad95-d9a4-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u0ef18e64&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-13%20at%2021.22.33.png&amp;originHeight=766&amp;originWidth=1958&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=563834&amp;status=done&amp;style=none&amp;taskId=u3d10dca7-d1ae-48e8-b56a-19e2709de6d&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657740162373-0bdb6942-c61b-49ad-9ee5-01129b7007fb.png#clientId=u02baad95-d9a4-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u0ef18e64&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-13%20at%2021.22.33.png&amp;originHeight=766&amp;originWidth=1958&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=563834&amp;status=done&amp;style=none&amp;taskId=u3d10dca7-d1ae-48e8-b56a-19e2709de6d&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657740162373-0bdb6942-c61b-49ad-9ee5-01129b7007fb.png#clientId=u02baad95-d9a4-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u0ef18e64&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-13%20at%2021.22.33.png&amp;originHeight=766&amp;originWidth=1958&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=563834&amp;status=done&amp;style=none&amp;taskId=u3d10dca7-d1ae-48e8-b56a-19e2709de6d&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657740162373-0bdb6942-c61b-49ad-9ee5-01129b7007fb.png#clientId=u02baad95-d9a4-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u0ef18e64&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-13%20at%2021.22.33.png&amp;originHeight=766&amp;originWidth=1958&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=563834&amp;status=done&amp;style=none&amp;taskId=u3d10dca7-d1ae-48e8-b56a-19e2709de6d&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657740162373-0bdb6942-c61b-49ad-9ee5-01129b7007fb.png#clientId=u02baad95-d9a4-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u0ef18e64&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-13%20at%2021.22.33.png&amp;originHeight=766&amp;originWidth=1958&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=563834&amp;status=done&amp;style=none&amp;taskId=u3d10dca7-d1ae-48e8-b56a-19e2709de6d&amp;title="
+        title="Screenshot 2022-07-13 at 21.22.33.png"
+    />
+<strong>Message sending process for basic message queue:</strong></p>
+<ol>
+<li>Establish a connection</li>
+<li>Create a channel</li>
+<li>Declare queues using created channels</li>
+<li>Use channel to send messages to queues</li>
+</ol>
+<p><strong>Message receiving process for basic message queue:</strong></p>
+<ol>
+<li>Establish a connection</li>
+<li>Create a channel</li>
+<li>Use the channel to declare the queue</li>
+<li>Declare consumer method handleDelivery()</li>
+<li>Use channel to bind consumers to queues</li>
+</ol>
+<h3 id="spring-amqp">Spring amqp</h3>
+<p>Use rabbitTemplate to send and get messages
+<img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657904546211-22fbfde7-11ba-4f8b-923b-a091eedb13b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=u4cf7d5ab&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2019.00.54.png&amp;originHeight=1112&amp;originWidth=2058&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=593392&amp;status=done&amp;style=none&amp;taskId=u66b61b47-bc1f-4df9-9e95-09c3699e9b0&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657904546211-22fbfde7-11ba-4f8b-923b-a091eedb13b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=u4cf7d5ab&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2019.00.54.png&amp;originHeight=1112&amp;originWidth=2058&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=593392&amp;status=done&amp;style=none&amp;taskId=u66b61b47-bc1f-4df9-9e95-09c3699e9b0&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657904546211-22fbfde7-11ba-4f8b-923b-a091eedb13b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=u4cf7d5ab&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2019.00.54.png&amp;originHeight=1112&amp;originWidth=2058&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=593392&amp;status=done&amp;style=none&amp;taskId=u66b61b47-bc1f-4df9-9e95-09c3699e9b0&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657904546211-22fbfde7-11ba-4f8b-923b-a091eedb13b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=u4cf7d5ab&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2019.00.54.png&amp;originHeight=1112&amp;originWidth=2058&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=593392&amp;status=done&amp;style=none&amp;taskId=u66b61b47-bc1f-4df9-9e95-09c3699e9b0&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657904546211-22fbfde7-11ba-4f8b-923b-a091eedb13b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=u4cf7d5ab&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2019.00.54.png&amp;originHeight=1112&amp;originWidth=2058&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=593392&amp;status=done&amp;style=none&amp;taskId=u66b61b47-bc1f-4df9-9e95-09c3699e9b0&amp;title="
+        title="Screenshot 2022-07-15 at 19.00.54.png"
+    /></p>
+<p>queues can use same binding key(which makes them fanout exchange)
+<img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657908921613-0956a3c9-beff-485b-bd05-d5f0a679c9b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc6cd8d80&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.15.08.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=625594&amp;status=done&amp;style=none&amp;taskId=ud21176dc-bdba-479a-842f-f896edafdec&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657908921613-0956a3c9-beff-485b-bd05-d5f0a679c9b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc6cd8d80&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.15.08.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=625594&amp;status=done&amp;style=none&amp;taskId=ud21176dc-bdba-479a-842f-f896edafdec&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657908921613-0956a3c9-beff-485b-bd05-d5f0a679c9b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc6cd8d80&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.15.08.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=625594&amp;status=done&amp;style=none&amp;taskId=ud21176dc-bdba-479a-842f-f896edafdec&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657908921613-0956a3c9-beff-485b-bd05-d5f0a679c9b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc6cd8d80&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.15.08.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=625594&amp;status=done&amp;style=none&amp;taskId=ud21176dc-bdba-479a-842f-f896edafdec&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657908921613-0956a3c9-beff-485b-bd05-d5f0a679c9b8.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc6cd8d80&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.15.08.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=625594&amp;status=done&amp;style=none&amp;taskId=ud21176dc-bdba-479a-842f-f896edafdec&amp;title="
+        title="Screenshot 2022-07-15 at 20.15.08.png"
+    /><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909413344-62633aa6-227a-42c5-aa7f-970f835b1394.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc8c46d47&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.23.21.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007979&amp;status=done&amp;style=none&amp;taskId=u4b8527d5-8485-40e5-8cac-4abb3590783&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909413344-62633aa6-227a-42c5-aa7f-970f835b1394.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc8c46d47&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.23.21.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007979&amp;status=done&amp;style=none&amp;taskId=u4b8527d5-8485-40e5-8cac-4abb3590783&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909413344-62633aa6-227a-42c5-aa7f-970f835b1394.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc8c46d47&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.23.21.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007979&amp;status=done&amp;style=none&amp;taskId=u4b8527d5-8485-40e5-8cac-4abb3590783&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909413344-62633aa6-227a-42c5-aa7f-970f835b1394.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc8c46d47&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.23.21.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007979&amp;status=done&amp;style=none&amp;taskId=u4b8527d5-8485-40e5-8cac-4abb3590783&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909413344-62633aa6-227a-42c5-aa7f-970f835b1394.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uc8c46d47&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.23.21.png&amp;originHeight=1112&amp;originWidth=2226&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1007979&amp;status=done&amp;style=none&amp;taskId=u4b8527d5-8485-40e5-8cac-4abb3590783&amp;title="
+        title="Screenshot 2022-07-15 at 20.23.21.png"
+    />
+Describe the difference between Direct switch and Fanout switch?
+Fanout: routes messages to every queue bound to it.
+Direct: Determines Which Queue It Is Routed To According To RouteKey.
+• If multiple queues have the same RoutingKey, it is similar to Fanout function.
+The common annotations based on @RabbitListener annotation declaration queues and switches:
+@Queue
+@Exchange</p>
+<h3 id="topicexchange">TopicExchange</h3>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909682952-3ab1fc53-b401-4fc4-8db9-83cc75b07f19.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u72bcce2b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.27.51.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=850908&amp;status=done&amp;style=none&amp;taskId=u6ea68502-a906-4664-bb85-5fd387eeb40&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909682952-3ab1fc53-b401-4fc4-8db9-83cc75b07f19.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u72bcce2b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.27.51.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=850908&amp;status=done&amp;style=none&amp;taskId=u6ea68502-a906-4664-bb85-5fd387eeb40&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909682952-3ab1fc53-b401-4fc4-8db9-83cc75b07f19.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u72bcce2b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.27.51.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=850908&amp;status=done&amp;style=none&amp;taskId=u6ea68502-a906-4664-bb85-5fd387eeb40&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909682952-3ab1fc53-b401-4fc4-8db9-83cc75b07f19.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u72bcce2b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.27.51.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=850908&amp;status=done&amp;style=none&amp;taskId=u6ea68502-a906-4664-bb85-5fd387eeb40&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657909682952-3ab1fc53-b401-4fc4-8db9-83cc75b07f19.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u72bcce2b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.27.51.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=850908&amp;status=done&amp;style=none&amp;taskId=u6ea68502-a906-4664-bb85-5fd387eeb40&amp;title="
+        title="Screenshot 2022-07-15 at 20.27.51.png"
+    /></p>
+<p>In message queues, any object will be serialized. But the performance of the default serialization method(JDK serialization) is not really satisfying(takes too much space).
+We can use Jackson converter to improve its performance.
+Note: Some bugs may appear while using Jackson converter./
+<img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910603797-36c7068f-c6fb-47a6-b699-dd50ee093cff.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=uf07dfc45&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.40.59.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=686090&amp;status=done&amp;style=none&amp;taskId=ueeaeb7bf-d015-40b1-ad78-3ea11b7b961&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910603797-36c7068f-c6fb-47a6-b699-dd50ee093cff.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=uf07dfc45&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.40.59.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=686090&amp;status=done&amp;style=none&amp;taskId=ueeaeb7bf-d015-40b1-ad78-3ea11b7b961&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910603797-36c7068f-c6fb-47a6-b699-dd50ee093cff.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=uf07dfc45&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.40.59.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=686090&amp;status=done&amp;style=none&amp;taskId=ueeaeb7bf-d015-40b1-ad78-3ea11b7b961&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910603797-36c7068f-c6fb-47a6-b699-dd50ee093cff.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=uf07dfc45&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.40.59.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=686090&amp;status=done&amp;style=none&amp;taskId=ueeaeb7bf-d015-40b1-ad78-3ea11b7b961&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910603797-36c7068f-c6fb-47a6-b699-dd50ee093cff.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=uf07dfc45&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.40.59.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=686090&amp;status=done&amp;style=none&amp;taskId=ueeaeb7bf-d015-40b1-ad78-3ea11b7b961&amp;title="
+        title="Screenshot 2022-07-15 at 20.40.59.png"
+    /><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910837644-0779ec56-05a2-474a-99f7-3be7e4ed28b4.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u30200ce7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.47.07.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=707237&amp;status=done&amp;style=none&amp;taskId=ude2b898a-fb88-46a8-8593-c0ea84abeed&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910837644-0779ec56-05a2-474a-99f7-3be7e4ed28b4.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u30200ce7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.47.07.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=707237&amp;status=done&amp;style=none&amp;taskId=ude2b898a-fb88-46a8-8593-c0ea84abeed&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910837644-0779ec56-05a2-474a-99f7-3be7e4ed28b4.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u30200ce7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.47.07.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=707237&amp;status=done&amp;style=none&amp;taskId=ude2b898a-fb88-46a8-8593-c0ea84abeed&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910837644-0779ec56-05a2-474a-99f7-3be7e4ed28b4.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u30200ce7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.47.07.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=707237&amp;status=done&amp;style=none&amp;taskId=ude2b898a-fb88-46a8-8593-c0ea84abeed&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1657910837644-0779ec56-05a2-474a-99f7-3be7e4ed28b4.png#clientId=ucb64d689-3ef6-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u30200ce7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-15%20at%2020.47.07.png&amp;originHeight=1096&amp;originWidth=2212&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=707237&amp;status=done&amp;style=none&amp;taskId=ude2b898a-fb88-46a8-8593-c0ea84abeed&amp;title="
+        title="Screenshot 2022-07-15 at 20.47.07.png"
+    /><strong>Note: consumer and publisher must be using the same message converter.</strong></p>
+<h3 id="reliability">Reliability</h3>
+<h4 id="publisher-confirm">publisher confirm:</h4>
+<blockquote>
+<p>publisher-confirm-type = correlate</p>
+</blockquote>
+<p>Enabling publisher confirms calls back a confirm function to identify whether the process succeeds.
+<strong>(Producer to exchange)</strong>
+<strong>true: ack</strong>
+<strong>false: nack</strong>
+To define callback:</p>
+<blockquote>
+<p>rabbitTemplate.setConfirmCallback() confirm as an anonymous class method
+confirm(CorrelationData, ack, cause)
+ack: whether the exchange have received the message
+correlationData: info can be manually set (id)</p>
+</blockquote>
+<h4 id="publisher-return">publisher-return:</h4>
+<p>exchange to queue: if failed return &ldquo;return Callback&rdquo;</p>
+<blockquote>
+<p>publisher-returns: true
+template:
+mandatory: true</p>
+</blockquote>
+<p>When the <strong>message from the exchange did not get to the queue</strong>, the default mode is throwing the message away, but we can change the mode of returnCallback notify the publisher of the failure.</p>
+<blockquote>
+<p>rabbbitTemplate.returnsCallback()
+default mode: discard message, not returning  <br>
+the returnedMessage method deals with messages in the exchange but not sent to the queues.</p>
+</blockquote>
+<h4 id="consumer-ack">Consumer Ack:</h4>
+<blockquote>
+<p>acknowledge = none</p>
+</blockquote>
+<p>As soon as the consumer receives the message, it send the ack message (No service successfulness confirmation)</p>
+<blockquote>
+<p>acknowledge = &ldquo;manual&rdquo;</p>
+</blockquote>
+<p>Manually use channel.basicAck() to confirm and channel.basicNack() to let the publisher resend the message.</p>
+<blockquote>
+<p>auto</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658497903764-82975af4-b7b7-467e-84ce-d67c8116afd4.png#clientId=u95a468dc-a085-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u5a6834b7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-22%20at%2015.51.16.png&amp;originHeight=678&amp;originWidth=2286&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=470076&amp;status=done&amp;style=none&amp;taskId=u745f30fb-c02a-4c0f-914c-39c70813c2c&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658497903764-82975af4-b7b7-467e-84ce-d67c8116afd4.png#clientId=u95a468dc-a085-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u5a6834b7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-22%20at%2015.51.16.png&amp;originHeight=678&amp;originWidth=2286&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=470076&amp;status=done&amp;style=none&amp;taskId=u745f30fb-c02a-4c0f-914c-39c70813c2c&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658497903764-82975af4-b7b7-467e-84ce-d67c8116afd4.png#clientId=u95a468dc-a085-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u5a6834b7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-22%20at%2015.51.16.png&amp;originHeight=678&amp;originWidth=2286&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=470076&amp;status=done&amp;style=none&amp;taskId=u745f30fb-c02a-4c0f-914c-39c70813c2c&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658497903764-82975af4-b7b7-467e-84ce-d67c8116afd4.png#clientId=u95a468dc-a085-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u5a6834b7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-22%20at%2015.51.16.png&amp;originHeight=678&amp;originWidth=2286&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=470076&amp;status=done&amp;style=none&amp;taskId=u745f30fb-c02a-4c0f-914c-39c70813c2c&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658497903764-82975af4-b7b7-467e-84ce-d67c8116afd4.png#clientId=u95a468dc-a085-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u5a6834b7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-22%20at%2015.51.16.png&amp;originHeight=678&amp;originWidth=2286&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=470076&amp;status=done&amp;style=none&amp;taskId=u745f30fb-c02a-4c0f-914c-39c70813c2c&amp;title="
+        title="Screenshot 2022-07-22 at 15.51.16.png"
+    />
+Use republishMessageRecover to bind error message and its routing key.
+How to guarantee reliability？</p>
+<ol>
+<li>Enbale publisher confirms and publisher returns to ensure message is sent to the exchange and queues</li>
+<li>Enable durability to ensure messages are durable</li>
+<li>Use consumer ack to ensure the consumer gets messages from queues</li>
+<li>Set acknowlwdge-mode to auto or simply use republishMessageRecoverer to bind error message queue and exchange.</li>
+</ol>
+<p>flow control ：</p>
+<ol>
+<li>use manual ack mode</li>
+<li>listener-container  prefetch = 1000 to control the flow. (The consumer get 1000 messages every time, need manual confirmation to continue)</li>
+</ol>
+<h4 id="ttl">TTL:</h4>
+<p>time to live: before the message got discarded.</p>
+<blockquote>
+<p>x-message-tt</p>
+</blockquote>
+<ol>
+<li>queue ttl can be set in the confiogurations.(Delete all messages in the queue) ms</li>
+<li>message ttl need to implement messagePostProcessor to setExpiration in the message properties(When the expired message is on top of the queue, it will be deleted.)</li>
+</ol>
+<p>Setting queue ttl and message ttl at the same time, it will use the shorter one.</p>
+<h5 id="dlx-dead-letter-exchange">DLX dead letter exchange</h5>
+<p>When a message is dead, it can be sent to another exchange. It is called DLX.</p>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658156346041-a64ad0c7-05b1-4196-851a-1f0a9ed0d5a7.png#clientId=u32ad3f27-a953-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u83bc7d3b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-18%20at%2016.58.47.png&amp;originHeight=510&amp;originWidth=1714&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=172237&amp;status=done&amp;style=none&amp;taskId=u1969679f-3882-4230-8fb0-2c47c0f2db2&amp;title="
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658156346041-a64ad0c7-05b1-4196-851a-1f0a9ed0d5a7.png#clientId=u32ad3f27-a953-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u83bc7d3b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-18%20at%2016.58.47.png&amp;originHeight=510&amp;originWidth=1714&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=172237&amp;status=done&amp;style=none&amp;taskId=u1969679f-3882-4230-8fb0-2c47c0f2db2&amp;title=, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658156346041-a64ad0c7-05b1-4196-851a-1f0a9ed0d5a7.png#clientId=u32ad3f27-a953-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u83bc7d3b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-18%20at%2016.58.47.png&amp;originHeight=510&amp;originWidth=1714&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=172237&amp;status=done&amp;style=none&amp;taskId=u1969679f-3882-4230-8fb0-2c47c0f2db2&amp;title= 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1658156346041-a64ad0c7-05b1-4196-851a-1f0a9ed0d5a7.png#clientId=u32ad3f27-a953-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u83bc7d3b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-18%20at%2016.58.47.png&amp;originHeight=510&amp;originWidth=1714&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=172237&amp;status=done&amp;style=none&amp;taskId=u1969679f-3882-4230-8fb0-2c47c0f2db2&amp;title= 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1658156346041-a64ad0c7-05b1-4196-851a-1f0a9ed0d5a7.png#clientId=u32ad3f27-a953-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u83bc7d3b&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot%202022-07-18%20at%2016.58.47.png&amp;originHeight=510&amp;originWidth=1714&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=172237&amp;status=done&amp;style=none&amp;taskId=u1969679f-3882-4230-8fb0-2c47c0f2db2&amp;title="
+        title="Screenshot 2022-07-18 at 16.58.47.png"
+    /></p>
+<h4 id="dead-letter-queue-summary">Dead letter queue summary:</h4>
+<ol>
+<li>There is no difference between dead letter switches and dead letter queues and Xitong.</li>
+<li>When the message becomes a dead letter, if the queue is bound to a dead letter switch, the message will be rerouted to the dead letter team by the dead letter switch.</li>
+<li>Messages become dead letter:
+<ol>
+<li>exceeded limit of the queue</li>
+<li>consumer refused(basicNack) and requeue = false</li>
+<li>queue expired/message expired</li>
+</ol>
+</li>
+</ol>
+<p>parameters: x-dead-letter-exchange and x-dead-letter-routing-key</p>
+<h4 id="use-plugin-to-create-delayqueue">Use plugin to create delayqueue.</h4>
+<h5 id="install">Install:</h5>
+<h5 id="use">Use:</h5>
+<p>In the listener, declare delayed = true in th exchange setting.
+In the publisher, set message property: .setHeader(&ldquo;x-delay&rdquo;, 5000)
+The message will be delayed, but the publisher returns will get errors for not able to send the message directly to the exchange. In the message, the ReceivedDelay property will be the x-delay we set. So one possible solution would be using conditional statement to skip the publisher return</p>
+<blockquote>
+<p>if (message.getMessageProperties().getReceivedDelay() &gt; 0) {
+return;
+}</p>
+</blockquote>
+<h4 id="message-stuck">Message stuck</h4>
+<p>solutions:</p>
+<ol>
+<li>more consumers</li>
+<li>thread pool</li>
+<li>increase volume of the queue</li>
+</ol>
+<h4 id="lazy-queues">Lazy Queues</h4>
+<p>Note that normal rabbitmq queues are stored in the memory.
+But the lazy queues directly store the messages in the disk(This will cause some performance issues). When the consumers are consuming messages, the messages are read from the disk into the memory.(This supports millions of messages storing.)
+To set one queue to be lazy queue, simply set x-queue-mode to &ldquo;lazy&rdquo; or @arguments = @Argument(name = &ldquo;x-queue-mode&rdquo;, value = &ldquo;lazy&rdquo;)
+Pro:</p>
+<ol>
+<li>higher upper limit(disk storage)</li>
+<li>no intermittent page-out more stable</li>
+</ol>
+<p>Con:</p>
+<ol>
+<li>longer delay</li>
+<li>Subject to the disk IO performance</li>
+</ol>
+<h3 id="mq-cluster">MQ cluster</h3>
+<h4 id="classic-cluster">classic cluster</h4>
+<p>Nodes in the cluster share some info like exchange queue but not messages in the queues.
+If one node is offline, the messages are lost.
+When the consumer are requesting info from one node but the visited node doesn&rsquo;t have the queue. It will get the queue and its info from the node that has it.</p>
+<h4 id="image-cluster">Image cluster</h4>
+<ol>
+<li>The image queue structure is one <strong>master and multiple slave</strong> (slave is an image)</li>
+<li>all operations are performed on the primary node and then synchronized to the image node.</li>
+<li>After the master node is down, the image node is replaced by a new master node (if the master node is down before the master-slave synchronization is completed, data loss may occur)</li>
+<li>the server load balancer function is not available because all operations are completed by the master node (but the master node of different queues can be different, which can be used to improve throughput)</li>
+</ol>
+<p>higher reliability</p>
+<h4 id="quorum-queues">Quorum Queues</h4>
+<p>Sane as image queues but easier to use.<a href="https://www.yuque.com/attachments/yuque/0/2022/md/26679661/1658677394941-258ac0d0-38e4-4f0a-b932-5c7bfa757bfc.md?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fmd%2F26679661%2F1658677394941-258ac0d0-38e4-4f0a-b932-5c7bfa757bfc.md%22%2C%22name%22%3A%22RabbitMQ%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97.md%22%2C%22size%22%3A16675%2C%22type%22%3A%22text%2Fmarkdown%22%2C%22ext%22%3A%22md%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u4ca91ba1-163a-4433-8746-0abc37864c0%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22u0013e100%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D" target="_blank" rel="noopener noreffer">RabbitMQ部署指南.md</a></p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-06-18</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ljystu/ljystu.github.io/rabbitmq/index.md" target="_blank" rel="noopener noreferrer">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="Share on Twitter" data-sharer="twitter" data-url="https://github.com/ljystu/ljystu.github.io/rabbitmq/" data-title="RabbitMQ" data-hashtags="RabbitMQ"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Facebook" data-sharer="facebook" data-url="https://github.com/ljystu/ljystu.github.io/rabbitmq/" data-hashtag="RabbitMQ"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://github.com/ljystu/ljystu.github.io/rabbitmq/" data-title="RabbitMQ" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Line" data-sharer="line" data-url="https://github.com/ljystu/ljystu.github.io/rabbitmq/" data-title="RabbitMQ"><i data-svg-src="/ljystu/ljystu.github.io/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="Share on 微博" data-sharer="weibo" data-url="https://github.com/ljystu/ljystu.github.io/rabbitmq/" data-title="RabbitMQ"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Myspace" data-sharer="myspace" data-url="https://github.com/ljystu/ljystu.github.io/rabbitmq/" data-title="RabbitMQ" data-description=""><i data-svg-src="/ljystu/ljystu.github.io/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="Share on Blogger" data-sharer="blogger" data-url="https://github.com/ljystu/ljystu.github.io/rabbitmq/" data-title="RabbitMQ" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Evernote" data-sharer="evernote" data-url="https://github.com/ljystu/ljystu.github.io/rabbitmq/" data-title="RabbitMQ"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/ljystu/ljystu.github.io/tags/rabbitmq/">RabbitMQ</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/ljystu/ljystu.github.io/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ljystu/ljystu.github.io/redis-distributed-lock/" class="prev" rel="prev" title="Redis distributed lock"><i class="fas fa-angle-left fa-fw"></i>Redis distributed lock</a>
+            <a href="/ljystu/ljystu.github.io/elasticsearch/" class="next" rel="next" title="Elasticsearch">Elasticsearch<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/ljystu/ljystu.github.io/" target="_blank" rel="noopener noreferrer">Jingyu Li</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/katex.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/ljystu/ljystu.github.io/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/ljystu/ljystu.github.io/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/ljystu/ljystu.github.io/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/ljystu/ljystu.github.io/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

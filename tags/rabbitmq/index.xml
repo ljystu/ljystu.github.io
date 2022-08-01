@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>RabbitMQ - Tag - My New Hugo Site</title>
+        <link>https://github.com/ljystu/ljystu.github.io/tags/rabbitmq/</link>
+        <description>RabbitMQ - Tag - My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Sat, 18 Jun 2022 10:36:32 &#43;0100</lastBuildDate><atom:link href="https://github.com/ljystu/ljystu.github.io/tags/rabbitmq/" rel="self" type="application/rss+xml" /><item>
+    <title>RabbitMQ</title>
+    <link>https://github.com/ljystu/ljystu.github.io/rabbitmq/</link>
+    <pubDate>Sat, 18 Jun 2022 10:36:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>https://github.com/ljystu/ljystu.github.io/rabbitmq/</guid>
+    <description><![CDATA[Decoupling Event-driven design better performance Problems with Synchronous communication(Feign): 1.Coupling 2.can not handle huge amount of requests in a short time(high concurrency). 3.Waste of resources during waiting 4.Cascade failure: service failed, the cluster fails cascadingly Asynchronous(Event driven design): Use Broker to control events. Service publish events and the others subscribed to the broker waiting for events. Better performance/No cascade failures Advantages of asynchronous communication: Low coupling Improve throughput Fault isolation]]></description>
+</item></channel>
+</rss>
