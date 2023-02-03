@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">JVM - My New Hugo Site</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="JVM" />
+<meta property="og:description" content="JVM stands for Java Virtual Machine. Write Once Run Anywhere Automatic memory management and garbage collection mechanism Array out of bounds detection Program counter register To store the address of next command in JVM. Features: Thread safe. Every thread has its own time slices and will be executed when it is its turn. No memory overflow problem. JVM stacks Allocated per thread as well Every thread in the JVM needs" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/jvm/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-02T14:23:32+01:00" />
+<meta property="article:modified_time" content="2022-09-02T14:23:32+01:00" /><meta property="og:site_name" content="My New Hugo Site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
+
+<meta name="twitter:title" content="JVM"/>
+<meta name="twitter:description" content="JVM stands for Java Virtual Machine. Write Once Run Anywhere Automatic memory management and garbage collection mechanism Array out of bounds detection Program counter register To store the address of next command in JVM. Features: Thread safe. Every thread has its own time slices and will be executed when it is its turn. No memory overflow problem. JVM stacks Allocated per thread as well Every thread in the JVM needs"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://example.org/jvm/" /><link rel="prev" href="http://example.org/elasticsearch/" /><link rel="next" href="http://example.org/redis/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JVM",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/jvm\/"
+        },"genre": "posts","wordcount":  2471 ,
+        "url": "http:\/\/example.org\/jvm\/","datePublished": "2022-09-02T14:23:32+01:00","dateModified": "2022-09-02T14:23:32+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jingyu Li"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="My New Hugo Site">Personal Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/projects/"> Projects </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/jvm/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="My New Hugo Site">Personal Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/projects/" title="">Projects</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/jvm/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JVM</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Jingyu Li</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/tech/"><i class="far fa-folder fa-fw"></i>Tech</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-09-02">2022-09-02</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-09-02">2022-09-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2471 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#program-counter-register">Program counter register</a>
+          <ul>
+            <li><a href="#features">Features:</a></li>
+          </ul>
+        </li>
+        <li><a href="#jvm-stacks">JVM stacks</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#question">Question:</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#native-method-stacks">Native Method stacks</a></li>
+        <li><a href="#heap">Heap</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#features-1">Features:</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#method-area">Method Area</a>
+          <ul>
+            <li><a href="#constant-pool">Constant pool</a></li>
+            <li><a href="#run-time-constant-pool"><strong>Run-time Constant Pool</strong></a></li>
+            <li><a href="#stringtablein-heap">StringTable(in heap)</a>
+              <ul>
+                <li><a href="#stringtable-vs-constant-pool">Stringtable vs Constant pool</a></li>
+              </ul>
+            </li>
+            <li><a href="#gc-in-na">GC in NA</a></li>
+          </ul>
+        </li>
+        <li><a href="#direct-memorynot-controlled-by-jvm">Direct Memory(Not controlled by JVM)</a></li>
+        <li><a href="#jvm-gc">JVM GC</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#引用队列">引用队列</a></li>
+              </ul>
+            </li>
+            <li><a href="#gc-algorithm">GC algorithm</a></li>
+            <li><a href="#gc">GC</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>JVM stands for Java Virtual Machine.</p>
+<ol>
+<li>Write Once Run Anywhere</li>
+<li>Automatic memory management and garbage collection mechanism</li>
+<li>Array out of bounds detection</li>
+</ol>
+<h3 id="program-counter-register">Program counter register</h3>
+<p>To store the address of next command in JVM.</p>
+<h4 id="features">Features:</h4>
+<ol>
+<li>Thread safe. Every thread has its own time slices and will be executed when it is its turn.</li>
+<li>No memory overflow problem.</li>
+</ol>
+<h3 id="jvm-stacks">JVM stacks</h3>
+<p><strong>Allocated per thread as well</strong>
+Every thread in the JVM needs memory, it is called frame. Every stack is made of multiple frames, it corresponds to the memory when the method is running. Every thread has only one **active **frame. Which means when the method is running it will be pushed into the stack and popped out when finished.</p>
+<h5 id="question">Question:</h5>
+<ol>
+<li>Are stacks involved in GC process?</li>
+</ol>
+<p>No, the finished method will be popped out when finished, no need to do grabage collection.</p>
+<ol start="2">
+<li>Is it true that the bigger the stack is the better it works?</li>
+</ol>
+<p>No. Because physical memory is fixed. Bigger memory supports more recursion but less threads.</p>
+<ol start="3">
+<li>Thread safe?</li>
+</ol>
+<p>If 2 threads modify the same static variable. It&rsquo;s not thread safe. But for local variables, it&rsquo;s thread safe.</p>
+<ol start="4">
+<li>Stack overflow</li>
+</ol>
+<p>There are too many frames in the stack(infinite recursion). Or the single frame takes too much memory(not common).
+The memory for a Java Virtual Machine stack does not need to be contiguous.
+The variables that are not created objects and reference variables are stored in stack.</p>
+<blockquote>
+<p>int i = 1;
+Test test = new Test();// Variable test is in stack, while the true new Test() is in heap.
+Test myTest = new Test(1, 1, 2);// 1 1 2 are stored in stack.</p>
+</blockquote>
+<h3 id="native-method-stacks">Native Method stacks</h3>
+<p>Some native methods written in C or C++ are stored here to directly interact with underlying hardware.
+clone wait notify hashCode</p>
+<h3 id="heap">Heap</h3>
+<p>A place to store almost all of the <strong>objects</strong>.(new Objects &hellip;)(largest memory consumer)
+Arrays lists</p>
+<h5 id="features-1">Features:</h5>
+<ol>
+<li>The Java Virtual Machine has a heap that is **shared **among all Java Virtual Machine threads.</li>
+<li>The main GC area.</li>
+<li>-Xmx -Xms to distribute heap memory(default 1/64 of the physical memory).</li>
+</ol>
+<p>Heap put of memory case: adding infinite number of elements into a list.
+jps, jmao and jconsloe are used to diagnose the heap memory.</p>
+<h3 id="method-area">Method Area</h3>
+<p>Created when the JVM is on.The memory for a Method area does not need to be contiguous. Shutting down JVM will release the memory of MA.
+The size of MA deetermines how many classes cam be stored in the system. Too many definitions of classes will tigger out of memory error.
+this area stores all the compiled code. It stores per-class structures such as the run-time constant pool, field and method data, and the code for methods and constructors.</p>
+<blockquote>
+<p>Class, Interface, enum, annotation
+Type Information: (class, interface, enum, annotation)JVM must store the following type information in the method area:</p>
+<ol>
+<li>the full and valid name of this type (full name = package name. Class name)</li>
+<li>the full valid name of the direct parent class of this type (neither interface nor java. lang.Object has a parent class)</li>
+<li>Access modifiers of this type (a subset of public, abstract, and final)</li>
+<li>an ordered list of direct interfaces of this type</li>
+</ol>
+</blockquote>
+<p>Domain Information (member variables):</p>
+<blockquote>
+<ol>
+<li>the JVM must store information about all domains of the type and the declaration order of the domains in the method area.</li>
+<li>Domain information includes domain name, domain type, and domain modifier (a subset of public, private, protected, static, final, volatile, and transient).</li>
+<li>Method information: the JVM must store the following information about all methods, including the declaration order as the domain information.</li>
+</ol>
+</blockquote>
+<p>Method</p>
+<blockquote>
+<ol>
+<li>method return type (or void)</li>
+<li>number and type of method parameters in sequence</li>
+<li>method modifiers (a subset of public, private, protected, static, final,synchronized, native, and abstract)</li>
+<li>Method bytecode (bytecodes), operand stack, local variable table, and size (except abstract and native methods)</li>
+<li>exception tables (except abstract and native methods)</li>
+</ol>
+</blockquote>
+<ul>
+<li>Jdk 1.6 and earlier: permanent generation (static variables are stored on permanent generation), string constant pool (1.6 in method area)</li>
+<li>Jdk 1.7: it has permanent generation, but has been gradually &ldquo;removed from permanent generation&rdquo;. String constant pools and static variables are removed and stored in the heap.</li>
+<li>Jdk 1.8 and later: no permanent generation, constant pool 1.8 in the meta space. However, static variables and string constant pools are still in the heap.</li>
+</ul>
+<p>Why replace permanent generation with meta space?
+It is difficult to determine the size of the permanent generation setting space: (1) the permanent generation parameter setting is too small. In some scenarios, if there are too many dynamically loaded classes, OOM in the Perm area is easy to occur. For example, in an actual Web project, because there are many function points, many classes need to be dynamically loaded continuously during the running process, and fatal errors often occur.
+(2) the permanent generation parameter is too large, resulting in a waste of space.
+(3) by default, the size of the metadata is limited by the local memory)
+it is difficult to perform optimization in permanent generation: (garbage collection in the method area mainly recycles two parts: discarded constants in the constant pool and types that are no longer used, while classes that are no longer used or class loaders are complex to recycle, and full gc takes a long time)
+<img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660156037484-0a46e9be-9f35-432c-b366-975a0a0e2869.png#clientId=u7bc9efad-5467-4&amp;from=paste&amp;height=476&amp;id=u496402a1&amp;name=image.png&amp;originHeight=656&amp;originWidth=962&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=161804&amp;status=done&amp;style=none&amp;taskId=u66505260-282d-41cc-a88f-6efe3b2c156&amp;title=&amp;width=698"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660156037484-0a46e9be-9f35-432c-b366-975a0a0e2869.png#clientId=u7bc9efad-5467-4&amp;from=paste&amp;height=476&amp;id=u496402a1&amp;name=image.png&amp;originHeight=656&amp;originWidth=962&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=161804&amp;status=done&amp;style=none&amp;taskId=u66505260-282d-41cc-a88f-6efe3b2c156&amp;title=&amp;width=698, https://cdn.nlark.com/yuque/0/2022/png/26679661/1660156037484-0a46e9be-9f35-432c-b366-975a0a0e2869.png#clientId=u7bc9efad-5467-4&amp;from=paste&amp;height=476&amp;id=u496402a1&amp;name=image.png&amp;originHeight=656&amp;originWidth=962&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=161804&amp;status=done&amp;style=none&amp;taskId=u66505260-282d-41cc-a88f-6efe3b2c156&amp;title=&amp;width=698 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1660156037484-0a46e9be-9f35-432c-b366-975a0a0e2869.png#clientId=u7bc9efad-5467-4&amp;from=paste&amp;height=476&amp;id=u496402a1&amp;name=image.png&amp;originHeight=656&amp;originWidth=962&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=161804&amp;status=done&amp;style=none&amp;taskId=u66505260-282d-41cc-a88f-6efe3b2c156&amp;title=&amp;width=698 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660156037484-0a46e9be-9f35-432c-b366-975a0a0e2869.png#clientId=u7bc9efad-5467-4&amp;from=paste&amp;height=476&amp;id=u496402a1&amp;name=image.png&amp;originHeight=656&amp;originWidth=962&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=161804&amp;status=done&amp;style=none&amp;taskId=u66505260-282d-41cc-a88f-6efe3b2c156&amp;title=&amp;width=698"
+        title="image.png"
+    />
+StringTable is put in heap after Java 1.8.
+StringTable为什么要调整?
+jdk7中将StringTable放到了堆空间中。因为永久代的回收效率很低,在full gc的时候才能触发。而full gc是老年代的空间不足、永久代不足才会触发。这就导致StringTable回收效率不高,而我们开发中会有大量的字符串被创建,回收效率低,导致永久代内存不足,放到堆里,能及时回收内存。
+object.intern()// If the object already exists in the Stringtable, it will return the var in the ST.
+// if not, it will try to add the object into CP
+**<strong>In java 1.6, intern() simply make a copy of the object and store it into the CP, not object itself.</strong>
+Overflow: permanent generation before 1.8 metaspace after 1.8</p>
+<h4 id="constant-pool">Constant pool</h4>
+<p>.class file not real object
+JVM use constant pool as a table to find <strong>class name, methods and variables.</strong></p>
+<h4 id="run-time-constant-pool"><strong>Run-time Constant Pool</strong></h4>
+<p>When a class is loaded, its constants will be put into runtime constant pool. Their real address will be recorded in the RTCP(in constant pool it is not the real address)
+Mainly to types:</p>
+<ol>
+<li>Normal constans: String, final variables.</li>
+<li>Name of classes and interfaces, names of fields(abc xyz) and their descriptor(private protected), names of methods and their descriptors.</li>
+</ol>
+<p>**<strong>After 1.8, StringTable and static variables are in heap.</strong></p>
+<h4 id="stringtablein-heap">StringTable(in heap)</h4>
+<p>Variables in StringTable are the index of String objects. The real Strings are still stored in the heap as well.
+In the heap means GC will be conducted when memory is short.
+before 1.8, Stringtable is in CP.
+Normal GC.
+To optimize, ajust the bucket size to be larger.</p>
+<h5 id="stringtable-vs-constant-pool">Stringtable vs Constant pool</h5>
+<ul>
+<li>The string in the constant pool is only a symbol, only **converted to an object only when it is used. **</li>
+<li>The string pool mechanism is used to avoid repeatedly creating string objects. (<strong>Non-duplicate)</strong></li>
+<li>String **variable **the principle of splicing is **StringBuilder **</li>
+<li>string **constant **the principle of splicing is **compiler optimization **</li>
+<li>can be used **intern method **, actively put string objects that are not in the string pool into the string pool</li>
+</ul>
+<p>All objects in ST and CP.
+Lazy loading: When executed to the line where the String is, it will be loaded.</p>
+<blockquote>
+<p>String ab = &ldquo;ab&rdquo;;// 串池之中
+String ab1 = &ldquo;a&rdquo; + &ldquo;b&rdquo;
+String ab2 = a+b;// 堆内存之中</p>
+<p>// 结果为false,因为ab是存在于串池之中，ab2是由StringBuffer的toString方法所返回的一个对象，存在于堆内存之中
+System.out.println(ab == ab2);</p>
+<p>String ab2 = a+b;// StringBuilder().append(“a”).append(“b”).toString()
+// 使用拼接字符串的方法创建字符串	
+String ab3 = &ldquo;a&rdquo; + &ldquo;b&rdquo;;// String ab (javac 在编译期进行了优化)
+ab3 = ab1</p>
+<p><a href="https://blog.csdn.net/weixin_43591980/article/details/116068011" target="_blank" rel="noopener noreffer">
+</a></p>
+</blockquote>
+<p>Concatenating &ldquo;a&rdquo; and &ldquo;b&rdquo; if &ldquo;ab&rdquo; is already in the pool.it is the same as ab = &ldquo;ab&rdquo;
+Concatenating a and b, because they are variables, need to use StringBuilder.</p>
+<h4 id="gc-in-na">GC in NA</h4>
+<p>Unused class and dicarded constants.
+Unused class is extremely hard to be determined.</p>
+<ol>
+<li>all of its objects are recycled</li>
+<li>classloader is recycled</li>
+<li>class is not used or referenced anywhere else.</li>
+</ol>
+<h3 id="direct-memorynot-controlled-by-jvm">Direct Memory(Not controlled by JVM)</h3>
+<p>Direct memory is a memory section which Java code and OS can both access(efficient)
+<strong>Requesting direct memory needs to be conducted manually. Release is manually conducted not automatic GC process.</strong>
+<strong>Reason:</strong>
+more efficient and better I/O performance.</p>
+<h3 id="jvm-gc">JVM GC</h3>
+<ol>
+<li>Reference counting(Deprecated) if a and b have circular dependency, the memory won&rsquo;t be collected.</li>
+<li>Reachability Analysis: Use algo to determine whether an object in heap is referenced, if not, recycle it. Need a GC root first(the object that definitely can&rsquo;t be recycled.). Object that can be GC root:
+<ol>
+<li>
+<p>Object in stack</p>
+</li>
+<li>
+<p>Static reference in NA</p>
+</li>
+<li>
+<p>Reference contants in NA</p>
+</li>
+<li>
+<p>JNI reference objects in local stack.</p>
+<p>reference types:</p>
+</li>
+<li>
+<p>Strong: new object,  a = b (When it is not referenced by any object, it will be recycled.) Even if the memory is short, JVM will throw outofmemory instead of recycle it.</p>
+</li>
+<li>
+<p>Soft:  will be recycled when memory is not enough. SoftReference<xxx></p>
+</li>
+<li>
+<p>Weak: WeakReference<xxx> will be recycled when GC.</p>
+<ol>
+<li>Soft and weak reference will be sent into reference list when the object is gone(list is used to store soft and weak reference when we neeed to remove them).</li>
+</ol>
+</li>
+<li>
+<p>PhatomRefence and fina<strong>l(Use finalize() method to init)</strong> reference need to be used with a list. They will be sent into reference list when the object is gone. Cleaner will regularly scan the list to remove reference.</p>
+</li>
+</ol>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660163964575-903b816d-3133-4f7e-b14c-5d30fddc3664.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=251&amp;id=u6fcac415&amp;name=image.png&amp;originHeight=502&amp;originWidth=1014&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=141785&amp;status=done&amp;style=none&amp;taskId=u2d0c3ed2-268f-49fc-a5be-fb1b8c53ce8&amp;title=&amp;width=507"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660163964575-903b816d-3133-4f7e-b14c-5d30fddc3664.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=251&amp;id=u6fcac415&amp;name=image.png&amp;originHeight=502&amp;originWidth=1014&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=141785&amp;status=done&amp;style=none&amp;taskId=u2d0c3ed2-268f-49fc-a5be-fb1b8c53ce8&amp;title=&amp;width=507, https://cdn.nlark.com/yuque/0/2022/png/26679661/1660163964575-903b816d-3133-4f7e-b14c-5d30fddc3664.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=251&amp;id=u6fcac415&amp;name=image.png&amp;originHeight=502&amp;originWidth=1014&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=141785&amp;status=done&amp;style=none&amp;taskId=u2d0c3ed2-268f-49fc-a5be-fb1b8c53ce8&amp;title=&amp;width=507 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1660163964575-903b816d-3133-4f7e-b14c-5d30fddc3664.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=251&amp;id=u6fcac415&amp;name=image.png&amp;originHeight=502&amp;originWidth=1014&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=141785&amp;status=done&amp;style=none&amp;taskId=u2d0c3ed2-268f-49fc-a5be-fb1b8c53ce8&amp;title=&amp;width=507 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660163964575-903b816d-3133-4f7e-b14c-5d30fddc3664.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=251&amp;id=u6fcac415&amp;name=image.png&amp;originHeight=502&amp;originWidth=1014&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=141785&amp;status=done&amp;style=none&amp;taskId=u2d0c3ed2-268f-49fc-a5be-fb1b8c53ce8&amp;title=&amp;width=507"
+        title="image.png"
+    /></p>
+<ul>
+<li>如上图，B对象不再引用A4对象。这是终结器对象就会被放入引用队列中，引用队列会根据它，找到它所引用的对象。然后调用被引用对象的finalize()方法。调用以后，该对象就可以被垃圾回收了。</li>
+</ul>
+<h5 id="引用队列">引用队列</h5>
+<ul>
+<li>软引用和弱引用<strong>可以配合</strong>引用队列(也可以不配合)：
+<ul>
+<li>在<strong>弱引用</strong>和<strong>虚引用</strong>所引用的对象被回收以后，会将这些引用放入引用队列中，方便一起回收这些软/弱引用对象。</li>
+</ul>
+</li>
+<li>虚引用和终结器引用<strong>必须配合</strong>引用队列：
+<ul>
+<li>虚引用和终结器引用在使用时会关联一个引用队列。</li>
+</ul>
+</li>
+</ul>
+<p>强引用：无论内存是否足够，不会回收。</p>
+<p>软引用：内存不足时，回收该引用关联的对象。(可以选择配合引用队列使用，也可以不配合)。</p>
+<p>弱引用：垃圾回收时，无论内存是否足够，都会回收。(可以选择配合引用队列使用，也可以不配合)。</p>
+<p>虚引用：任何时候都可能被垃圾回收器回收。(必须配合引用队列使用)。</p>
+<h4 id="gc-algorithm">GC algorithm</h4>
+<ol>
+<li>Mark and Sweep： Mark all reachable objects and sweep the rest.</li>
+</ol>
+<p>drawback: Resulting large amount of fragmental memory pieces, hard to allocate memory for large object.
+<img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660164611819-420f70a9-3571-4ce0-94c0-5e0082425dd0.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=869&amp;id=u3c209b55&amp;name=image.png&amp;originHeight=590&amp;originWidth=339&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=84105&amp;status=done&amp;style=none&amp;taskId=ucd0e8c42-24f5-453f-adac-3f6f8a2aab1&amp;title=&amp;width=499.5"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660164611819-420f70a9-3571-4ce0-94c0-5e0082425dd0.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=869&amp;id=u3c209b55&amp;name=image.png&amp;originHeight=590&amp;originWidth=339&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=84105&amp;status=done&amp;style=none&amp;taskId=ucd0e8c42-24f5-453f-adac-3f6f8a2aab1&amp;title=&amp;width=499.5, https://cdn.nlark.com/yuque/0/2022/png/26679661/1660164611819-420f70a9-3571-4ce0-94c0-5e0082425dd0.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=869&amp;id=u3c209b55&amp;name=image.png&amp;originHeight=590&amp;originWidth=339&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=84105&amp;status=done&amp;style=none&amp;taskId=ucd0e8c42-24f5-453f-adac-3f6f8a2aab1&amp;title=&amp;width=499.5 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1660164611819-420f70a9-3571-4ce0-94c0-5e0082425dd0.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=869&amp;id=u3c209b55&amp;name=image.png&amp;originHeight=590&amp;originWidth=339&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=84105&amp;status=done&amp;style=none&amp;taskId=ucd0e8c42-24f5-453f-adac-3f6f8a2aab1&amp;title=&amp;width=499.5 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660164611819-420f70a9-3571-4ce0-94c0-5e0082425dd0.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=869&amp;id=u3c209b55&amp;name=image.png&amp;originHeight=590&amp;originWidth=339&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=84105&amp;status=done&amp;style=none&amp;taskId=ucd0e8c42-24f5-453f-adac-3f6f8a2aab1&amp;title=&amp;width=499.5"
+        title="image.png"
+    />:</p>
+<ol start="2">
+<li>Mark and compact</li>
+</ol>
+<p>Mark and sweep with compacting memory pieces. Good for large objects but less efficient.</p>
+<ol start="3">
+<li>Copying</li>
+</ol>
+<p>Copy used objects to another memory area and release all of the old area. Easy but smemory consuming.</p>
+<ol start="4">
+<li>Generational Collection(Common)</li>
+</ol>
+<p><img
+        class="lazyload"
+        data-src="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660165169418-fd2c644d-f726-4d76-b44e-6bc9e940f9b2.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=138&amp;id=u31dfdf03&amp;name=image.png&amp;originHeight=275&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=68543&amp;status=done&amp;style=none&amp;taskId=ud42b7305-428a-4df9-9471-b7bcf7ab546&amp;title=&amp;width=557"
+        data-srcset="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660165169418-fd2c644d-f726-4d76-b44e-6bc9e940f9b2.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=138&amp;id=u31dfdf03&amp;name=image.png&amp;originHeight=275&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=68543&amp;status=done&amp;style=none&amp;taskId=ud42b7305-428a-4df9-9471-b7bcf7ab546&amp;title=&amp;width=557, https://cdn.nlark.com/yuque/0/2022/png/26679661/1660165169418-fd2c644d-f726-4d76-b44e-6bc9e940f9b2.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=138&amp;id=u31dfdf03&amp;name=image.png&amp;originHeight=275&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=68543&amp;status=done&amp;style=none&amp;taskId=ud42b7305-428a-4df9-9471-b7bcf7ab546&amp;title=&amp;width=557 1.5x, https://cdn.nlark.com/yuque/0/2022/png/26679661/1660165169418-fd2c644d-f726-4d76-b44e-6bc9e940f9b2.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=138&amp;id=u31dfdf03&amp;name=image.png&amp;originHeight=275&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=68543&amp;status=done&amp;style=none&amp;taskId=ud42b7305-428a-4df9-9471-b7bcf7ab546&amp;title=&amp;width=557 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2022/png/26679661/1660165169418-fd2c644d-f726-4d76-b44e-6bc9e940f9b2.png#clientId=ud449edd4-c6cc-4&amp;from=paste&amp;height=138&amp;id=u31dfdf03&amp;name=image.png&amp;originHeight=275&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=68543&amp;status=done&amp;style=none&amp;taskId=ud42b7305-428a-4df9-9471-b7bcf7ab546&amp;title=&amp;width=557"
+        title="image.png"
+    /></p>
+<p>新创建的对象首先会被分配在伊甸园区域。
+新生代空间不足时，触发Minor GC，伊甸园和 FROM幸存区需要存活的对象会被COPY到TO幸存区中，存活的对象寿命+1，并且交换FROM和TO。
+Minor GC会引发 Stop The World：暂停其他用户的线程，等待垃圾回收结束后，用户线程才可以恢复执行。
+当对象寿命超过阈值15时，会晋升至老年代。
+如果新生代、老年代中的内存都满了，就会先触发Minor GC，再触发Full GC，扫描新生代和老年代中所有不再使用的对象并回收。</p>
+<h4 id="gc">GC</h4>
+<p><a href="https://blog.csdn.net/weixin_43591980/article/details/116068011" target="_blank" rel="noopener noreffer">
+</a>
+<a href="https://blog.csdn.net/weixin_43591980/article/details/116068011" target="_blank" rel="noopener noreffer">
+</a></p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-09-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/jvm/index.md" target="_blank" rel="noopener noreferrer">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="Share on Twitter" data-sharer="twitter" data-url="http://example.org/jvm/" data-title="JVM"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Facebook" data-sharer="facebook" data-url="http://example.org/jvm/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="Share on WhatsApp" data-sharer="whatsapp" data-url="http://example.org/jvm/" data-title="JVM" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Line" data-sharer="line" data-url="http://example.org/jvm/" data-title="JVM"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/jvm/" data-title="JVM"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Myspace" data-sharer="myspace" data-url="http://example.org/jvm/" data-title="JVM" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="Share on Blogger" data-sharer="blogger" data-url="http://example.org/jvm/" data-title="JVM" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Evernote" data-sharer="evernote" data-url="http://example.org/jvm/" data-title="JVM"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/elasticsearch/" class="prev" rel="prev" title="Elasticssearch"><i class="fas fa-angle-left fa-fw"></i>Elasticssearch</a>
+            <a href="/redis/" class="next" rel="next" title="Redis">Redis<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Jingyu Li</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

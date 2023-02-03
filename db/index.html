@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Mysql - My New Hugo Site</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="Mysql" />
+<meta property="og:description" content="DB操作 主要来自菜鸟教程 A inner join B 取交集。 A left join B 取 A 全部，B 没有对应的值为 null。 A right join B 取 B 全部 A 没有对应的值为 null。 A full outer join B 取并" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/db/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-27T11:35:32+01:00" />
+<meta property="article:modified_time" content="2022-10-27T11:35:32+01:00" /><meta property="og:site_name" content="My New Hugo Site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
+
+<meta name="twitter:title" content="Mysql"/>
+<meta name="twitter:description" content="DB操作 主要来自菜鸟教程 A inner join B 取交集。 A left join B 取 A 全部，B 没有对应的值为 null。 A right join B 取 B 全部 A 没有对应的值为 null。 A full outer join B 取并"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://example.org/db/" /><link rel="prev" href="http://example.org/postgresql/" /><link rel="next" href="http://example.org/%E4%B8%80%E4%BA%9B%E9%A1%B9%E7%9B%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/db\/"
+        },"genre": "posts","wordcount":  8376 ,
+        "url": "http:\/\/example.org\/db\/","datePublished": "2022-10-27T11:35:32+01:00","dateModified": "2022-10-27T11:35:32+01:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Jingyu Li"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="My New Hugo Site">Personal Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/projects/"> Projects </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/db/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="My New Hugo Site">Personal Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/projects/" title="">Projects</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/db/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Mysql</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Jingyu Li</a>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/tech/"><i class="far fa-folder fa-fw"></i>Tech</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-27">2022-10-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-10-27">2022-10-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;8376 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;17 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#db操作">DB操作</a></li>
+        <li><a href="#连接池">连接池</a>
+          <ul>
+            <li><a href="#优点">优点：</a></li>
+            <li><a href="#连接池主要参数">连接池主要参数</a></li>
+            <li><a href="#连接池使用过程中的主要问题">连接池使用过程中的主要问题：</a></li>
+            <li><a href="#数据库连接泄露">数据库连接泄露：</a></li>
+          </ul>
+        </li>
+        <li><a href="#索引">索引</a>
+          <ul>
+            <li><a href="#索引的优点">索引的优点</a></li>
+            <li><a href="#索引的缺点">索引的缺点</a></li>
+            <li><a href="#索引的数据结构">索引的数据结构</a>
+              <ul>
+                <li><a href="#b-tree">B Tree</a></li>
+                <li><a href="#hash-索引">Hash 索引</a></li>
+                <li><a href="#前缀索引">前缀索引：</a>
+                  <ul>
+                    <li><a href="#最左前缀匹配规则">最左前缀匹配规则：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#如何添加索引">如何添加索引</a></li>
+            <li><a href="#聚簇索引">聚簇索引</a></li>
+          </ul>
+        </li>
+        <li><a href="#事务">事务</a>
+          <ul>
+            <li><a href="#事务状态">事务状态</a></li>
+            <li><a href="#acid">ACID</a></li>
+          </ul>
+        </li>
+        <li><a href="#典型问题">典型问题：</a></li>
+        <li><a href="#锁">锁</a>
+          <ul>
+            <li><a href="#死锁">死锁</a></li>
+          </ul>
+        </li>
+        <li><a href="#sql">SQL 　　</a>
+          <ul>
+            <li><a href="#sql优化">SQL优化</a></li>
+            <li><a href="#partition-and-sharding">partition and sharding</a></li>
+            <li><a href="#分库的问题">分库的问题</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="db操作">DB操作</h3>
+<p>主要来自菜鸟教程
+<strong>A inner join B</strong> 取交集。
+<strong>A left join B</strong> 取 A 全部，B 没有对应的值为 null。
+<strong>A right join B</strong> 取 B 全部 A 没有对应的值为 null。
+<strong>A full outer join B</strong> 取并集，彼此没有对应的值为 null。
+数据库范式是设计数据库时，需要遵循的一些规范。各种范式是条件递增的联系，越高的范式数据库冗余越小。常用的数据库三大范式为：</p>
+<p>第一范式（1NF）：每个列都不可以再拆分，强调的是列的原子性。第一范式要求数据库中的表都是二维表。
+例子：一列中有两种信息，应当拆分
+第二范式（2NF）：在第一范式的基础上，一个表必须有一个主键，非主键列 完全依赖 于主键，而不能是依赖于主键的一部分。
+例子：订单号 产品数量 产品金额 产品折扣 &hellip; 订单金额
+订单金额只和订单号相关，所以应该拆分到另一张表中
+第三范式（3NF）：在第二范式的基础上，非主键列只依赖（直接依赖）于主键，不依赖于其他非主键。
+类似于第二范式，3NF要求非主键直接依赖于主键
+例如：学生学号 姓名 年龄 班主任年龄 性别
+班主任性别和学生学号间接相关，应当拆分</p>
+<p><strong>注：况实际分析设计，兼顾性能和需求方面的考虑，无需一昧追求满足三范式。</strong></p>
+<h3 id="连接池">连接池</h3>
+<p>普通DB连接需要在连接前建立连接 确认连接 执行SQL 关闭连接
+TCP握手等开销过大 但是实现简单。</p>
+<p>连接池可以提供一定数量的数据库连接，第一次访问的时候，需要建立连接。 但是之后的访问，均会复用之前创建的连接，直接执行SQL语句。</p>
+<h4 id="优点">优点：</h4>
+<ol>
+<li>较少了网络开销</li>
+<li>系统的性能会有一个实质的提升</li>
+<li>没了麻烦的TIME_WAIT状态</li>
+</ol>
+<h4 id="连接池主要参数">连接池主要参数</h4>
+<p>使用连接池时，要配置一下参数</p>
+<ol>
+<li>最小连接数：是连接池一直保持的数据库连接,所以如果应用程序对数据库连接的使用量不大,将会有大量的数据库连接资源被浪费.</li>
+<li>最大连接数：是连接池能申请的最大连接数,如果数据库连接请求超过次数,后面的数据库连接请求将被加入到等待队列中,这会影响以后的数据库操作</li>
+<li>最大空闲时间</li>
+<li>获取连接超时时间</li>
+<li>超时重试连接次数</li>
+</ol>
+<h4 id="连接池使用过程中的主要问题">连接池使用过程中的主要问题：</h4>
+<ul>
+<li>事务问题：必须保证两个线程中的事务原子性，为此我们可以给每一个线程（事务）单独分配一个连接对象，开销大但是安全</li>
+<li>连接池的配置与维护：最小连接数设置过大则启动配置慢但是使用过程中很快，反之则使用过程中较慢。根据需求进行具体配置。</li>
+</ul>
+<p>最流行连接池Hikari Druid</p>
+<h4 id="数据库连接泄露">数据库连接泄露：</h4>
+<p>如果在某次使用或者某段程序中没有正确地关闭 Connection、Statement 和 ResultSet 资源，那么每次执行都会留下一些没有关闭的连接，这些连接失去了引用而不能得到重新使用，因此就造成了数据库连接的泄漏。
+需要进行连接的配置服务降级等操作</p>
+<h3 id="索引">索引</h3>
+<h4 id="索引的优点">索引的优点</h4>
+<ul>
+<li>通过创建** 唯一性索引**，可以保证数据库表中每一行数据的唯一性；</li>
+<li>可以加快数据的 <strong>检索速度</strong>，这也是创建索引的主要原因；</li>
+<li>可以加速表和表之间的连接，特别是在实现 <strong>数据的参考完整性</strong> 方面特别有意义；</li>
+<li>通过使用索引，可以在查询的过程中，使用 <strong>优化隐藏器</strong>，提高系统性能。</li>
+</ul>
+<h4 id="索引的缺点">索引的缺点</h4>
+<ul>
+<li>时间上，创建和维护索引都要耗费时间，这种时间随着数据量的增加而增加，具体地，当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，这样就降低了数据的维护速度；</li>
+<li>空间上，索引需要占 <strong>物理空间</strong>，除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果要建立聚簇索引，那么需要的空间就会更大。</li>
+</ul>
+<p>索引为什么可以加快查询速度？
+因为使用索引后可以不用扫描全表来定位某行的数据，而是先通过索引表找到该行数据对应的<strong>物理地址</strong>然后访问相应的数据
+同时，由于索引底层实现的有序性，使得在进行数据查询时，能够避免在磁盘不同扇区的随机寻址
+使用索引后能够通过磁盘预读使得在磁盘上对数据的访问大致呈顺序的寻址。这本质上是依据局部性原理所实现的
+总结：
+索引大大减少了服务器需要扫描的数据量
+索引可以帮助服务器避免排序和临时表
+索引可以将随机I/O变成顺序I/O（局部性原理）</p>
+<h4 id="索引的数据结构">索引的数据结构</h4>
+<h5 id="b-tree">B Tree</h5>
+<p>层级结构中用页存储一定量的信息（16KB），所有数据存储在叶子结点中，非叶子结点只负责存储目录（关键字信息）
+记录头信息里的record_type属性，它的各个取值代表的意思如下：</p>
+<ul>
+<li>0：普通的用户记录</li>
+<li>1：目录项记录</li>
+<li>2：最小记录</li>
+<li>3：最大记录</li>
+</ul>
+<p>可以看到底层存储数据的页面中使用 2 3作为最小值和最大值的标记，中间的0为数据项。
+层级中record_type为1的项中存储目录，其中分为key 和 page info，分别存储数据启示key和对应的页面number。
+下图为B+树，和B树的唯一区别是叶子结点之间的连接
+<img
+        class="lazyload"
+        data-src="/Mysql/mysql1.png"
+        data-srcset="/Mysql/mysql1.png, /Mysql/mysql1.png 1.5x, /Mysql/mysql1.png 2x"
+        data-sizes="auto"
+        alt="/Mysql/mysql1.png"
+        title="image.png"
+    />
+<strong>注：两个页面之间有连接方便范围查询。新分配的数据页编号可能并不是连续的，也就是说我们使用的这些页在存储空间里可能并不挨着</strong>
+<img
+        class="lazyload"
+        data-src="/Mysql/mysql2.png"
+        data-srcset="/Mysql/mysql2.png, /Mysql/mysql2.png 1.5x, /Mysql/mysql2.png 2x"
+        data-sizes="auto"
+        alt="/Mysql/mysql2.png"
+        title="image.png"
+    />
+使用B树存储的上限取决于单个页面能够存储的数据量和目录量 按照层级相乘则是总共能存储的数据量
+<img
+        class="lazyload"
+        data-src="/Mysql/mysql3.png"
+        data-srcset="/Mysql/mysql3.png, /Mysql/mysql3.png 1.5x, /Mysql/mysql3.png 2x"
+        data-sizes="auto"
+        alt="/Mysql/mysql3.png"
+        title="image.png"
+    />
+使用B+树的优点：</p>
+<ul>
+<li>非叶子结点只存储key不放value，在同一页中可以读取到很多key更快缩小范围</li>
+<li>叶子结点之间有一条链相连，加快全查找和范围查找的速度</li>
+<li>稳定O(logn)</li>
+</ul>
+<h5 id="hash-索引">Hash 索引</h5>
+<p>哈希索引采用一定的 哈希算法（常见哈希算法有 直接定址法、平方取中法、折叠法、除数取余法、随机数法），将数据库字段数据转换成定长的 Hash 值，与这条数据的行指针一并存入 Hash 表的对应位置，如果发生 Hash 碰撞（两个不同关键字的 Hash 值相同），则在对应 Hash 键下以 链表形式 存储。</p>
+<p>检索时不需要类似 B+ 树那样从根节点到叶子节点逐级查找，只需一次哈希算法即可立刻定位到相应的位置，速度非常快，平均检索时间为 O(1)。</p>
+<p>区别：</p>
+<ul>
+<li>hash索引查询快但是无法进行范围查询</li>
+<li>hash索引无法进行索引排序</li>
+<li>Hash 索引虽然在等值查询上较快，但是不稳定，性能不可预测，当某个键值存在大量重复的时候，发生 Hash 碰撞，此时效率可能极差；而 B+ 树的查询效率比较稳定，对于所有的查询都是从根结点到叶子结点，且树的高度较低。</li>
+<li>hash无法进行模糊查询和前缀查询</li>
+</ul>
+<h5 id="前缀索引">前缀索引：</h5>
+<p>使用辨识度高的前几位作为前缀可以大大提升查询效率，但是如果辨识度低可能性能会很差。</p>
+<h6 id="最左前缀匹配规则">最左前缀匹配规则：</h6>
+<p>在 MySQL 建立 联合索引（多列索引） 时会遵守最左前缀匹配原则，即 最左优先，在检索数据时从联合索引的最左边开始匹配。例如有一个 3 列索引（a,b,c），则已经对（a）、（a,b）、（a,b,c）上建立了索引。所以在创建 多列索引时，要根据业务需求，where 子句中 使用最频繁 的一列放在最左边。
+根据最左前缀匹配原则，MySQL 会一直向右匹配直到遇到 范围查询（&gt;、&lt;、between、like）就停止匹配，比如采用查询条件 where a = 1 and b = 2 and c &gt; 3 and d = 4 时，如果建立（a,b,c,d）顺序的索引，d 是用不到索引的，如果建立（a,b,d,c）的索引则都可以用到，并且 where 子句中 a、b、d 的顺序可以任意调整。
+如果建立的索引顺序是 （a,b） ，那么根据最左前缀匹配原则，直接采用查询条件 where b = 1 是无法利用到索引的。
+<img
+        class="lazyload"
+        data-src="/Mysql/mysql4.png"
+        data-srcset="/Mysql/mysql4.png, /Mysql/mysql4.png 1.5x, /Mysql/mysql4.png 2x"
+        data-sizes="auto"
+        alt="/Mysql/mysql4.png"
+        title="image.png"
+    /></p>
+<h4 id="如何添加索引">如何添加索引</h4>
+<ul>
+<li>查询很少使用的烈不需要索引（增加维护成本 减缓查询速度）</li>
+<li>只有很少数据的列不需要索引</li>
+<li>修改操作远大于查询时不使用索引</li>
+<li>有外键的列一定要索引</li>
+</ul>
+<h4 id="聚簇索引">聚簇索引</h4>
+<p><img
+        class="lazyload"
+        data-src="/Mysql/mysql5.png"
+        data-srcset="/Mysql/mysql5.png, /Mysql/mysql5.png 1.5x, /Mysql/mysql5.png 2x"
+        data-sizes="auto"
+        alt="/Mysql/mysql5.png"
+        title="image.png"
+    />
+聚簇索引指将 <strong>数据存储</strong>和 <strong>索引</strong> 放到一起，找到索引也就找到了数据。
+一般而言使用在频繁使用、排序的字段上</p>
+<h3 id="事务">事务</h3>
+<p>数据库的 事务（Transaction）是一种机制、一个操作序列，包含了一组数据库操作命令，其执行的结果必须使数据库从一种一致性状态变到另一种一致性状态。事务把所有的命令作为一个整体一起向系统提交或撤销操作请求，即这一组数据库命令要么都执行，要么都不执行，因此事务是一个不可分割的工作逻辑单元。如果任意一个操作失败，那么整组操作即为失败，会回到操作前状态或者是上一个节点。
+因此，事务是保持 <strong>逻辑数据一致性</strong> 和 <strong>可恢复性</strong> 的重要利器。而锁是实现事务的关键，可以保证事务的完整性和并发性</p>
+<h4 id="事务状态">事务状态</h4>
+<ul>
+<li>活跃状态：事务的第一个状态，任何正在执行的事务都处于此状态，所做的 更改 存储在 主内存的缓冲区 中。</li>
+<li>部分提交状态：执行上次操作后，事务进入部分提交状态。之所以是部分提交，是因为所做的更改仍然在主内存的缓冲区中。</li>
+<li>失败状态：如果某个检查在活动状态下失败，在活动状态或部分提交状态发生一些错误，并且事务无法进一步执行，则事务进入失败状态。</li>
+<li>中止状态：如果任何事务已达到失败状态，则恢复管理器将数据库回滚到开始执行的原始状态。</li>
+<li>提交状态：如果所有操作成功执行，则来自 部分提交状态 的事务进入提交状态。无法从此状态回滚，它是一个新的 一致状态。</li>
+</ul>
+<h4 id="acid">ACID</h4>
+<ul>
+<li>原子性</li>
+</ul>
+<p>事务是最小的执行单位，不可分割的（原子的）。事务的原子性确保动作要么全部执行，要么全部不执行。
+以 银行转账 事务为例，如果该事务提交了，则这两个账户的数据将会更新；如果由于某种原因，事务在成功更新这两个账户之前终止了，则不会更新这两个账户的余额，并且会 **撤销 **对任何账户余额的修改，回到此操作前状态，即事务不能部分提交。</p>
+<ul>
+<li>一致性</li>
+</ul>
+<p>当事务完成时，数据必须处于一致状态，多个事务对同一个数据读取的结果是相同的。
+以银行转账事务事务为例。在事务开始之前，所有 <strong>账户余额的总额处于一致状态</strong>。在事务进行的过程中，一个账户余额减少了，而另一个账户余额尚未修改。因此，所有账户余额的总额处于不一致状态。但是当事务完成以后，账户余额的总额再次恢复到一致状态。</p>
+<ul>
+<li>隔离性</li>
+</ul>
+<p><strong>并发访问数据库</strong> 时，一个用户的事务不被其他事务所干扰，各个事务不干涉内部的数据。
+修改数据的事务可以在另一个使用相同数据的事务开始之前访问这些数据，或者在另一个使用相同数据的事务结束之后访问这些数据。</p>
+<ul>
+<li>持久性</li>
+</ul>
+<p>一个事务被提交之后，它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</p>
+<p>A原子性:由undo log日志保证，它记录了需要回滚的日志信息，事务回滚时撤销已经执行成功的sql
+C一致性:一般由代码层面来保证
+I隔离性:由MVCC来保证
+D持久性:由内存+redo log来保证，mysql修改数据同时在内存和redo log记录这次操作，事务提交的时候通过redo log刷盘，宕机的时候可以从redo log恢复</p>
+<p>事务之间互相影响的例子：</p>
+<ul>
+<li>脏读（Dirty Read）</li>
+</ul>
+<p>一个事务读取了另一个事务未提交的数据。</p>
+<ul>
+<li>不可重复读（Non-repeatable Read）</li>
+</ul>
+<p>就是在一个事务范围内，两次相同的查询会返回两个不同的数据，这是因为在此间隔内有其他事务对数据进行了修改。</p>
+<ul>
+<li>幻读（Phantom Read）</li>
+</ul>
+<p>幻读是指当事务 不是独立执行时 发生的一种现象，例如有一个事务对表中的数据进行了修改，这种修改涉及到表中的全部数据行，同时，第一个事务也修改这个表中的数据，这种修改是向表中 插入一行新数据。那么，第一个事务的用户发现表中还有没有修改的数据行，就好像发生了幻觉一样。</p>
+<ul>
+<li>丢失更新（Lost Update）</li>
+</ul>
+<p>两个事务同时读取同一条记录，事务 A 先修改记录，事务 B 也修改记录（B 是不知道 A 修改过），当 B 提交数据后， 其修改结果覆盖了 A 的修改结果，导致事务 A 更新丢失。
+事务隔离级别
+隔离级别	脏读	不可重复读	幻读	丢失更新
+读取未提交	是	是	是	是
+读取已提交	否	是	是	是
+可重复读	否	否	是	否
+可串行化	否	否	否	否
+读取未提交
+最低的隔离级别，一个事务可以读到另一个事务未提交的结果，所有的并发事务问题都会发生。
+读取已提交
+只有在事务提交后，其更新结果才会被其他事务看见，可以解决 脏读问题，但是不可重复读或幻读仍有可能发生。Oracle 默认采用的是该隔离级别。
+可重复读
+在一个事务中，对于同一份数据的读取结果总是相同的，无论是否有其他事务对这份数据进行操作，以及这个事务是否提交，除非数据是被本身事务自己所修改。可以解决 脏读、不可重复读。MySQL 默认采用可重复读隔离级别。
+可串行化
+事务 串行化执行，隔离级别最高，完全服从 ACID，牺牲了系统的并发性，也就是说，所有事务依次逐个执行，所以可以解决并发事务的所有问题。</p>
+<h3 id="典型问题">典型问题：</h3>
+<ol>
+<li>数据保存在内存的优点和缺点分别是什么？
+优点是存取速度快，缺点是数据无法永久保存。</li>
+<li>触发器的使用场景有哪些？</li>
+</ol>
+<p>• 可以通过数据库中的相关表实现 级联更改；
+• 实时监控某张表中的某个字段的更改，并需要做出相应的处理。</p>
+<h3 id="锁">锁</h3>
+<p><img
+        class="lazyload"
+        data-src="/Mysql/mysql6.png"
+        data-srcset="/Mysql/mysql6.png, /Mysql/mysql6.png 1.5x, /Mysql/mysql6.png 2x"
+        data-sizes="auto"
+        alt="/Mysql/mysql6.png"
+        title="image.png"
+    />
+共享锁（S）：又叫 他读锁。可以并发读取数据，但不能修改数据。也就是说当数据资源上存在共享锁时，所有的事务都不能对该数据进行修改，直到数据读取完成，共享锁释放。
+可以理解为读锁，</p>
+<ul>
+<li>多个事务可以封锁同一个共享页</li>
+<li>任何事务都不能修改此页但可以读</li>
+<li>页被读取完后S锁自动释放</li>
+</ul>
+<p>排它锁（X）：又叫 独占锁、写锁。对数据资源进行增删改操作时，不允许其它事务操作这块资源，直到排它锁被释放，从而防止同时对同一资源进行多重操作。</p>
+<ul>
+<li>仅允许一个事务封锁此页</li>
+<li>其他事务必须等待X锁被释放时才能对页进行访问</li>
+<li>事务结束后X锁才会被释放</li>
+</ul>
+<p>select for update 会锁住行以及任何关联的索引条目，其他事务的update会被阻塞。所有S和X锁在事务提交或者回滚后被释放。
+更新锁（U）：防止出现 死锁 的锁模式，两个事务对一个数据资源进行先读取再修改的情况下，使用共享锁和排它锁有时会出现死锁现象，而使用更新锁就可以避免死锁的出现。</p>
+<ul>
+<li>用来预定对此页施加X锁，允许其他事务读但不允许再施加U或者X锁</li>
+<li>需要更新时升级为X锁</li>
+<li>事务结束后U锁才会被释放</li>
+</ul>
+<p>意向锁：表示 SQL Server 需要在 <strong>层次结构中的某些底层资源上</strong> 获取共享锁或排它锁。例如，放置在 <strong>表级</strong> 的 **共享意向锁 **表示事务打算在表中的页或行上放置共享锁。在表级设置意向锁可防止另一个事务随后在包含那一页的表上获取排它锁。
+意向锁可以提高性能，因为 SQL Server 仅在 表级 检查意向锁来确定事务是否可以安全地获取该表上的锁，而无须检查表中的每行或每页上的锁以确定事务是否可以锁定整个表。
+意向锁包括意向共享 (IS)、意向排它 (IX) 以及与意向排它共享 (SIX)。</p>
+<p><strong>乐观锁</strong>（Optimistic Locking）认为对同一数据的并发操作不会总发生，属于小概率事件，不用每次都对数据上锁，也就是不采用数据库自身的锁机制，而是通过程序来实现。在程序上，我们可以采用版本号机制或者时间戳机制实现。
+每次访问时根据某些特殊字段（时间戳等）进行判断是否有人修改过当前值
+时间戳和版本号机制一样，也是在更新提交的时候，将当前数据的时间戳和更新之前取得的时间戳进行比较，如果两者一致则更新成功，否则就是版本冲突。</p>
+<p>**悲观锁（Pessimistic Locking）**也是指一种锁的思想，对数据被其他事务的修改持保守态度，会通过数据库自身的锁机制(表锁，行锁，读锁，写锁等）来实现，从而保证数据操作的排它性。
+数据库能够确定那些行需要锁的情况下使用行锁，如果不知道会影响哪些行的时候就会使用表锁。</p>
+<p>举个例子，一个用户表user，有主键id和用户生日birthday。
+当你使用update … where id=?这样的语句时，数据库明确知道会影响哪一行，它就会使用行锁；
+当你使用update … where birthday=?这样的的语句时，因为事先不知道会影响哪些行就可能会使用表锁。
+<a href="https://blog.csdn.net/weixin_39651041/article/details/79985715" target="_blank" rel="noopener noreffer">
+</a>
+从这两种锁的设计思想中，可以看出乐观锁和悲观锁的适用场景：</p>
+<blockquote>
+<p>乐观锁适合读操作多的场景，相对来说写的操作比较少。它的优点在于程序实现，不存在死锁问题，不过适用场景也会相对乐观，因为它阻止不了除了程序以外的数据库操作。</p>
+</blockquote>
+<p>悲观锁适合写操作多的场景，因为写的操作具有排它性。采用悲观锁的方式，可以在数据库层面阻止其他事务对该数据的操作权限，防止读 - 写和写 - 写的冲突。</p>
+<h4 id="死锁">死锁</h4>
+<p>如果一组进程中的每一个进程都在等待仅由该组进程中的其他进程才能引发的事件，那么该组进程是死锁的。</p>
+<p>死锁有四个必要条件
+互斥 请求和保持 不可抢占 循环等待
+常见原因：</p>
+<ul>
+<li>事务之间对资源的交替访问</li>
+<li>并发修改同一个记录（使用乐观锁）</li>
+<li>索引不当导致死锁（注意不要使用过多的关联多表的查询，优化索引）</li>
+</ul>
+<p>预防死锁：设置某些限制条件破坏死锁的几个必要条件
+避免死锁：在资源的动态分配中，用某种方法（如银行家算法）防止系统进入不安全状态
+检测死锁
+解除死锁</p>
+<p>如何尽可能的避免死锁呢？
+1）以固定的顺序访问表和行。即按顺序申请锁，这样就不会造成互相等待的场面。
+2）大事务拆小。大事务更倾向于死锁，如果业务允许，将大事务拆小。
+3）在同一个事务中，尽可能做到一次锁定所需要的所有资源，减少死锁概率。
+4）降低隔离级别。如果业务允许，将隔离级别调低也是较好的选择，比如将隔离级别从RR调整为RC，可以避免掉很多因为gap锁造成的死锁。
+5）为表添加合理的索引。如果不走索引将会为表的每一行记录添加上锁，死锁的概率大大增大。</p>
+<h3 id="sql">SQL 　　</h3>
+<p>语句可分为以下几类：</p>
+<p>数据定义语言 DDL（Data Definition Language）：例如 CREATE，DROP，ALTER 等，对逻辑结构等有操作的，其中包括表结构，视图和索引。
+数据查询语言 DQL（Data Query Language）：即查询操作，以 SELECT 关键字为主，各种简单查询、连接查询等都属于 DQL。
+数据操纵语言 DML（Data Manipulation Language）：例如 INSERT，UPDATE，DELETE 等，对数据进行操作的。DQL 与 DML共同构建了多数初级程序员常用的 增删改查 操作，而查询是较为特殊的一种，被划分到 DQL 中。
+数据控制功能 DCL（Data Control Language）：例如 GRANT，REVOKE，COMMIT，ROLLBACK 等，对数据库安全性、完整性等有操作的，可以简单的理解为权限控制等。</p>
+<p>keys
+超 键：在关系中，能唯一标识元组的属性集称为关系模式的超键。一个属性可以作为一个超键，多个属性组合在一起也可以作为一个超键。超键包含候选键和主键。
+候选键：是最小超键，即没有冗余元素的超键。
+主 键：数据库表中对储存数据对象予以 唯一和完整标识的数据列或属性的组合。一个数据列只能有一个主键，且主键的取值不能缺失，即不能为空值（NULL）。
+外 键：在一个表中存在的另一个表的主键称此表的外键，外键可以有重复的, 可以是空值。外键是用来和其他表建立联系用的。
+举例子：
+现在有个表（学号，身份证号，姓名，分数）
+学号和身份证号都可以唯一标识，因此只要含有这两个属性的属性集合就可以是超键，如（学号，姓名）、（身份证号，分数）等等。
+而将超键的属性集合中的冗余属性剔除，则变成了候选键，这里（学号）和（身份证号）为候选键。
+主键则是表设计者从候选键中选取的属性或属性集合，构成主键，可以单独选学号或身份证号作为主键，也可以选（学号，身份证号）一起作为主键。
+外键则很好理解了，就是某个属性，是其他表的主键，则在这个表中就是外键。</p>
+<p>char 与 varchar 的区别
+char 表示定长字符串，长度是固定的，最多能存放的字符个数为 255，和编码无关；而 varchar 表示可变长字符串，长度是可变的，最多能存放的字符个数为 65532；
+使用 char 时，如果插入数据的长度小于 char 的固定长度时，则用空格填充；
+因为固定长度，char 的存取速度比 varchar 快很多，同时缺点是会占用多余空间，属于空间换时间；</p>
+<p>DROP、DELETE 与 TRUNCATE 的区别
+三种都可以表示删除，其中的细微区别之处如下：</p>
+<p>DROP 						DELETE									TRUNCATE
+SQL 语句类型	DDL							DML										DDL
+回滚			不可回滚					可回滚									   不可回滚
+删除内容	从数据库中 删除表， 		表结构还在，删除表的			    表结构还在，删除表中的所有数据
+所有的数据行， 		全部或者一部分数据行
+索引和权限也会被删除									
+删除速度	删除速度最快			删除速度慢，需要逐行删除						删除速度快
+因此，在不再需要一张表的时候，采用 DROP；在想删除部分数据行时候，用 DELETE；在保留表而删除所有数据的时候用 TRUNCATE。</p>
+<p>[SQL] UNION [SQL]
+UNION 和 UNION ALL
+UNION 会去重 因此比 UNION ALL快很多</p>
+<h4 id="sql优化">SQL优化</h4>
+<ul>
+<li>将字段很多的表分解成多个表</li>
+</ul>
+<p>对于字段较多的表，如果有些字段的使用频率很低，可以将这些字段分离出来形成新表。</p>
+<ul>
+<li>增加中间表</li>
+</ul>
+<p>对于需要经常 联合查询 的表，通过建立中间表以提高查询效率，具体地，将需要通过联合查询的数据插入到中间表中，然后将原来的联合查询改为对中间表的查询。</p>
+<ul>
+<li>增加冗余字段</li>
+</ul>
+<p>众所皆知，设计数据表时应尽量遵循范式理论的规约，尽可能的减少冗余字段，让数据库设计看起来精致、优雅。但是，表的规范化程度越高，表和表之间的关系越多，需要连接查询的情况也就越多，性能也就越差，所以合理的加入冗余字段可以提高查询速度。</p>
+<h4 id="partition-and-sharding">partition and sharding</h4>
+<p><img
+        class="lazyload"
+        data-src="/Mysql/mysql7.png"
+        data-srcset="/Mysql/mysql7.png, /Mysql/mysql7.png 1.5x, /Mysql/mysql7.png 2x"
+        data-sizes="auto"
+        alt="/Mysql/mysql7.png"
+        title="Screenshot 2022-08-26 at 23.55.08.png"
+    /></p>
+<h4 id="分库的问题">分库的问题</h4>
+<p>事务问题
+分库分表后，就成了分布式事务。如果依赖数据库本身的分布式事务管理功能去执行事务，将付出高昂的性能代价； 如果由应用程序去协助控制，形成程序逻辑上的事务，又会造成编程方面的负担。
+跨库跨表的 JOIN 问题
+在执行了分库分表之后，难以避免会将原本逻辑关联性很强的数据划分到不同的表、不同的库上，这时，表的关联操作将受到限制，我们无法 JOIN 位于不同分库的表，也无法 JOIN 分表粒度不同的表，结果原本一次查询能够完成的业务，可能需要多次查询才能完成。
+额外的数据管理负担和数据运算压力
+额外的数据管理负担，最为常见的是数据的 定位问题 和数据的 增删改查 的重复执行问题，这些都可以通过应用程序来解决，但必然会引起额外的逻辑运算。</p>
+<h2 id="总结">总结</h2>
+<p>dense_rank() 不跳过值排序
+<a href="https://leetcode.cn/problems/rank-scores/submissions/" target="_blank" rel="noopener noreffer">https://leetcode.cn/problems/rank-scores/submissions/</a></p>
+<p>group_concat() 可以拼接字段进行输出并且可以排序
+<a href="https://leetcode.cn/problems/group-sold-products-by-the-date/" target="_blank" rel="noopener noreffer">https://leetcode.cn/problems/group-sold-products-by-the-date/</a></p>
+<p>in 可以使用多个字段进行联合查找：(x,y)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">select Department.name Department, Employee.name Employee, Employee.salary Salary
+</span></span><span class="line"><span class="cl">from Department, Employee
+</span></span><span class="line"><span class="cl">where Employee.departmentId = Department.id and 
+</span></span><span class="line"><span class="cl">(Employee.salary , Employee.departmentId) in (
+</span></span><span class="line"><span class="cl">    select MAX(salary), departmentId
+</span></span><span class="line"><span class="cl">    from Employee
+</span></span><span class="line"><span class="cl">    group by departmentId
+</span></span><span class="line"><span class="cl">)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-10-27</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/db/index.md" target="_blank" rel="noopener noreferrer">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="Share on Twitter" data-sharer="twitter" data-url="http://example.org/db/" data-title="Mysql"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Facebook" data-sharer="facebook" data-url="http://example.org/db/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="Share on WhatsApp" data-sharer="whatsapp" data-url="http://example.org/db/" data-title="Mysql" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Line" data-sharer="line" data-url="http://example.org/db/" data-title="Mysql"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/db/" data-title="Mysql"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Myspace" data-sharer="myspace" data-url="http://example.org/db/" data-title="Mysql" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="Share on Blogger" data-sharer="blogger" data-url="http://example.org/db/" data-title="Mysql" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Evernote" data-sharer="evernote" data-url="http://example.org/db/" data-title="Mysql"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/postgresql/" class="prev" rel="prev" title="Postgresql"><i class="fas fa-angle-left fa-fw"></i>Postgresql</a>
+            <a href="/%E4%B8%80%E4%BA%9B%E9%A1%B9%E7%9B%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93/" class="next" rel="next" title="Notes">Notes<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Jingyu Li</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div id="cookieconsent-container"></div><div class="assets"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"sharerjs":true};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

@@ -1,10 +1,10 @@
-# Elasticsearch
+# Elasticssearch
 
 
 A powerful search engine for large scale data search. Also benefit for log analysis and monitoring.
 Elasticsearch: store, compute, search data
 
-##### Inverted Index
+### Inverted Index(less memory and faster query)
  **inverted index** (also referred to as a **postings list**, **postings file**, or **inverted file**) is a [database index](https://en.wikipedia.org/wiki/Database_index) storing a mapping from content, such as words or numbers, to its locations in a [table](https://en.wikipedia.org/wiki/Table_(database)), or in a document or a set of documents (named in contrast to a [forward index](https://en.wikipedia.org/wiki/Forward_index), which maps from documents to content). The purpose of an inverted index is to allow **fast **[**full-text searches**](https://en.wikipedia.org/wiki/Full-text_search)**,** at a cost of increased processing when a document is added to the database. 
 
 - 0. "it is what it is"
@@ -22,7 +22,7 @@ For the same text, we get the following completely reverse indexes, [document ](
 "what":   {(0, 2), **(1, 0)**}
 
 
-![Screenshot 2022-07-25 at 15.17.06.png](https://cdn.nlark.com/yuque/0/2022/png/26679661/1658755030090-bfda40ce-0d8d-4353-a551-3879ac8903de.png#clientId=uc6ebcbda-75f7-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=u85044708&margin=%5Bobject%20Object%5D&name=Screenshot%202022-07-25%20at%2015.17.06.png&originHeight=375&originWidth=857&originalType=binary&ratio=1&rotation=0&showTitle=false&size=111747&status=done&style=none&taskId=u8e34b8bb-ac05-4a64-8706-a7b4c6c5845&title=)
+![elasticsearch1](/elasticsearch/elasticsearch1.png)
 
 Mysql is suitable for writing and transactions
 Elasticsearch is suitable for largescale data search analysis and computing
@@ -31,10 +31,10 @@ Elasticsearch is suitable for largescale data search analysis and computing
 ##### type:
 
 1.  text(words that can be seperated), keyword(Should not be seperated: country names)
-1. Numbers: long, integer, short, byte, double, float
-1. boolean
-1. date
-1. object
+2. Numbers: long, integer, short, byte, double, float
+3. boolean
+4. date
+5. object
 ##### index:
 Specifies whether to create an index. The default value is true.
 ##### analyzer:
@@ -275,9 +275,9 @@ GET /hotel/_search
    1. boolean query
       1. combine multiple query
          1. must: &&
-         1. should: || 
-         1. must_not: 不算分 not
-         1. filter: 不算分
+         2. should: || 
+         3. must_not: 不算分 not
+         4. filter: 不算分
 ```java
 GET /hotel/_search
 {
@@ -314,7 +314,7 @@ GET /hotel/_search
    2. function score
       1. function score use BM25 algorithm
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/26679661/1658842273535-a4354179-51c1-4d81-b189-e5dfcf5db5f5.png#clientId=ufd320741-2d8c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=594&id=u67f88ab4&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1188&originWidth=2292&originalType=binary&ratio=1&rotation=0&showTitle=false&size=963736&status=done&style=none&taskId=u57ddb901-d6a3-4d62-a8be-74cacf05eb3&title=&width=1146)
+![image.png]( /elasticsearch/elasticsearch2.png)
 ```java
 GET /hotel/_search
 {
@@ -339,7 +339,7 @@ GET /hotel/_search
   }
 }
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/26679661/1658843100761-fdbe5a9b-bdd8-4eb8-9c12-acae853a5d01.png#clientId=ufd320741-2d8c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=537&id=u83b406a0&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1074&originWidth=2276&originalType=binary&ratio=1&rotation=0&showTitle=false&size=881444&status=done&style=none&taskId=u3c6002d8-909a-4439-a97c-230f0fc15c7&title=&width=1138)
+![image.png]( /elasticsearch/elasticsearch3.png)
 ###### sort
 default: function score
 keyword, numbers, date, location
@@ -431,7 +431,7 @@ Aggregations can be used to do analysis, computing and statistics analysis.
    1. TermAggregation
 
 By default, return a _count for field of the terms in desc order.
-We can use query to limit range of the TermAggregation.![image.png](https://cdn.nlark.com/yuque/0/2022/png/26679661/1658931921784-a471c6c9-1394-4053-a4c8-dbf7002e21f1.png#clientId=u9985d72f-f14c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=585&id=uc5208dbb&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1170&originWidth=2130&originalType=binary&ratio=1&rotation=0&showTitle=false&size=733875&status=done&style=none&taskId=ueef7eb40-e860-46b2-95b3-ad9c0f837e0&title=&width=1065)
+We can use query to limit range of the TermAggregation.![image.png]( /elasticsearch/elasticsearch4.png)
 
 2. Metric:	max, min, avg, stats
    1. based on the result of BucketAggregation
@@ -442,16 +442,37 @@ Aggregations of other aggregations(avg of a group)
 
 ### AutoSync between database and ES
 Use rabbitmq messages to decouple the service and update
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/26679661/1659038518967-d20bb162-0b4e-4de0-bcde-51102d53ed5f.png#clientId=u9985d72f-f14c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=598&id=u0311b200&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1196&originWidth=2270&originalType=binary&ratio=1&rotation=0&showTitle=false&size=1007277&status=done&style=none&taskId=u5a9c82c6-4c6a-4268-ad7e-fd118187c52&title=&width=1135)
+![image.png]( /elasticsearch/elasticsearch5.png)
 
 ### ES Cluster
 
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098426639-3ba56576-cb88-45a5-afe0-91a9238caedc.png#clientId=u9985d72f-f14c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=597&id=ubbcc2cc5&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1194&originWidth=2312&originalType=binary&ratio=1&rotation=0&showTitle=false&size=662060&status=done&style=none&taskId=u8e4dbbd6-aa4b-46de-b7a4-2aaf9656823&title=&width=1156)
+![image.png]( /elasticsearch/elasticsearch6.png)
 An example of a robust ES cluster.
  
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/26679661/1659098932722-ecb4b153-de91-4bc1-871f-da070d31586d.png#clientId=u9985d72f-f14c-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=582&id=u4fc4172b&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1164&originWidth=2398&originalType=binary&ratio=1&rotation=0&showTitle=false&size=711037&status=done&style=none&taskId=uec28011d-ff47-441d-8732-f5bcdfa50cb&title=&width=1199)
-split-brain problem:
+![image.png]( /elasticsearch/elasticsearch7.png)
+#### split-brain problem:
 When the master is having network issues for a long time, other nodes notice the situation and decide to elect a node to be the master node, so there will be 2 master nodes when the old master node back online.
 Solving: setting the consensus vote to be (eligible nodes + 1) / 2.(In versions after Elasticsearch 7.0, the number of eligible nodes is automatically calculated, so there are unlikely to be split-brain problem)
+
+#### How to elect the master node
+1. ZenDiscovery, module is responsible for selecting the master node, which mainly includes Ping (the RPC is used to discover each other between nodes) and Unicast (the Unicast module contains a list of hosts to control which nodes need to ping); 
+2. For all nodes that can become Masters ( node.master: true ) sort according to the Lexicographic order (字典序) of nodeId. Each node in each election sorts the nodes it knows in order, and then selects the first (0th) node. For the time being, it is considered as the master node. 
+3. If the number of votes for a node reaches a certain value ( the number of eligible master nodes n/2+1) and the node itself elects itself, the node is the master. Otherwise, there will be reelection until the above conditions are met. 
+4. Supplement: The master node is mainly responsible for managing clusters, nodes, and indexes. It is not responsible for document-level management. data nodes can disable http *
+
+### The procedure of indexing
+When the user write index to the master node. 
+Node 1 got the request and located the doc_id to be in Shard0, it will be directed to the node where the shard is located. Node 3 write on the shard. 
+If succeeded, if will request and direct to the nodest hat store the copy of the shard and write the index.
+![Screenshot 2022-08-10 at 11.34.52.png]( /elasticsearch/elasticsearch8.png)
+### Ways of optimising the index
+#### design:
+#### write:
+#### query optimization:
+1. Disable wildcard; 
+2. Disable batch terms (hundreds of scenarios); 
+3. Make full use of the inverted index mechanism and try to use the keyword type; 
+4. When the amount of data is large, the index can be finalized based on time before retrieval;
+
 

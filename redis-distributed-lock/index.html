@@ -10,12 +10,12 @@
 Using simple lock:
 1 2 3 4 5 6 7 8 9  stringRedisTemplate.opsForValue().setIfAbsent(&#34;lockKey&#34;, &#34;ljy&#34;); // This is the simplest realization of lock in redis // But this lock will trigger deadlock when the service is down // adding delete won&#39;t help stringTemplate.delete(&#34;lockKey&#34;); // setting expiration time have problem as well stringRedisTemplate." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ljystu.github.io/redis-distributed-lock/" /><meta property="og:image" content="https://ljystu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://example.org/redis-distributed-lock/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-05-18T10:36:32+01:00" />
 <meta property="article:modified_time" content="2022-05-18T10:36:32+01:00" /><meta property="og:site_name" content="My New Hugo Site" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://ljystu.github.io/logo.png"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
 <meta name="twitter:title" content="Redis distributed lock"/>
 <meta name="twitter:description" content="Distributed lock Under highly concurrent environment, the distributed lock is used to ensure consistency in the database. Here&rsquo;s an example of this.
@@ -26,7 +26,7 @@ Using simple lock:
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://ljystu.github.io/redis-distributed-lock/" /><link rel="prev" href="https://ljystu.github.io/best-time-to-buy-and-sell-stock/" /><link rel="next" href="https://ljystu.github.io/rabbitmq/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://example.org/redis-distributed-lock/" /><link rel="prev" href="http://example.org/best-time-to-buy-and-sell-stock/" /><link rel="next" href="http://example.org/rabbitmq/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -36,9 +36,9 @@ Using simple lock:
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/ljystu.github.io\/redis-distributed-lock\/"
+            "@id": "http:\/\/example.org\/redis-distributed-lock\/"
         },"genre": "posts","keywords": "Redis","wordcount":  210 ,
-        "url": "https:\/\/ljystu.github.io\/redis-distributed-lock\/","datePublished": "2022-05-18T10:36:32+01:00","dateModified": "2022-05-18T10:36:32+01:00","publisher": {
+        "url": "http:\/\/example.org\/redis-distributed-lock\/","datePublished": "2022-05-18T10:36:32+01:00","dateModified": "2022-05-18T10:36:32+01:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -214,7 +214,7 @@ It considers all the problem above and get it done with simple command.</p>
                             <a class="link-to-markdown" href="/redis-distributed-lock/index.md" target="_blank" rel="noopener noreferrer">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="#" onclick="return false;" title="Share on Twitter" data-sharer="twitter" data-url="https://ljystu.github.io/redis-distributed-lock/" data-title="Redis distributed lock" data-hashtags="Redis"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Facebook" data-sharer="facebook" data-url="https://ljystu.github.io/redis-distributed-lock/" data-hashtag="Redis"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://ljystu.github.io/redis-distributed-lock/" data-title="Redis distributed lock" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Line" data-sharer="line" data-url="https://ljystu.github.io/redis-distributed-lock/" data-title="Redis distributed lock"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="Share on 微博" data-sharer="weibo" data-url="https://ljystu.github.io/redis-distributed-lock/" data-title="Redis distributed lock"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Myspace" data-sharer="myspace" data-url="https://ljystu.github.io/redis-distributed-lock/" data-title="Redis distributed lock" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="Share on Blogger" data-sharer="blogger" data-url="https://ljystu.github.io/redis-distributed-lock/" data-title="Redis distributed lock" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Evernote" data-sharer="evernote" data-url="https://ljystu.github.io/redis-distributed-lock/" data-title="Redis distributed lock"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="#" onclick="return false;" title="Share on Twitter" data-sharer="twitter" data-url="http://example.org/redis-distributed-lock/" data-title="Redis distributed lock" data-hashtags="Redis"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Facebook" data-sharer="facebook" data-url="http://example.org/redis-distributed-lock/" data-hashtag="Redis"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="Share on WhatsApp" data-sharer="whatsapp" data-url="http://example.org/redis-distributed-lock/" data-title="Redis distributed lock" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Line" data-sharer="line" data-url="http://example.org/redis-distributed-lock/" data-title="Redis distributed lock"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/redis-distributed-lock/" data-title="Redis distributed lock"><i class="fab fa-weibo fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Myspace" data-sharer="myspace" data-url="http://example.org/redis-distributed-lock/" data-title="Redis distributed lock" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="#" onclick="return false;" title="Share on Blogger" data-sharer="blogger" data-url="http://example.org/redis-distributed-lock/" data-title="Redis distributed lock" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="#" onclick="return false;" title="Share on Evernote" data-sharer="evernote" data-url="http://example.org/redis-distributed-lock/" data-title="Redis distributed lock"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -227,12 +227,12 @@ It considers all the problem above and get it done with simple command.</p>
     </div>
 
     <div class="post-nav"><a href="/best-time-to-buy-and-sell-stock/" class="prev" rel="prev" title="Best Time to Buy and Sell Stock"><i class="fas fa-angle-left fa-fw"></i>Best Time to Buy and Sell Stock</a>
-            <a href="/rabbitmq/" class="next" rel="next" title="RabbitMQ">RabbitMQ<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/rabbitmq/" class="next" rel="next" title="RabbbitMQ">RabbbitMQ<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"></div></article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Jingyu Li</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Jingyu Li</a></span></div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">

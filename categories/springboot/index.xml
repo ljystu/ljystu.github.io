@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>SpringBoot - Category - My New Hugo Site</title>
-        <link>https://ljystu.github.io/categories/springboot/</link>
+        <link>http://example.org/categories/springboot/</link>
         <description>SpringBoot - Category - My New Hugo Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
-            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Thu, 16 Dec 2021 10:36:32 &#43;0100</lastBuildDate><atom:link href="https://ljystu.github.io/categories/springboot/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Thu, 16 Dec 2021 10:36:32 &#43;0100</lastBuildDate><atom:link href="http://example.org/categories/springboot/" rel="self" type="application/rss+xml" /><item>
     <title>SpringBoot</title>
-    <link>https://ljystu.github.io/springboot/</link>
+    <link>http://example.org/springboot/</link>
     <pubDate>Thu, 16 Dec 2021 10:36:32 &#43;0100</pubDate><author>
         <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/springboot/</guid>
+    </author><guid>http://example.org/springboot/</guid>
     <description><![CDATA[SpringBoot @Configuration 组件添加 源码重点： postProcessBeanDefinitionRegistry 每个registryId唯一 调用processConfigBeanDefinitions将registry中Bean]]></description>
 </item></channel>
 </rss>

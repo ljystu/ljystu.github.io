@@ -1,88 +1,80 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>All Posts - My New Hugo Site</title>
-        <link>https://ljystu.github.io/posts/</link>
+        <link>http://example.org/posts/</link>
         <description>All Posts | My New Hugo Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
-            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Tue, 21 Dec 2021 15:15:45 &#43;0100</lastBuildDate><atom:link href="https://ljystu.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>Elasticsearch</title>
-    <link>https://ljystu.github.io/elasticsearch/</link>
-    <pubDate>Wed, 06 Jul 2022 10:36:32 &#43;0100</pubDate><author>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Tue, 21 Dec 2021 15:15:45 &#43;0100</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Notes</title>
+    <link>http://example.org/%E4%B8%80%E4%BA%9B%E9%A1%B9%E7%9B%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93/</link>
+    <pubDate>Mon, 26 Dec 2022 23:11:32 &#43;0100</pubDate><author>
         <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/elasticsearch/</guid>
-    <description><![CDATA[A powerful search engine for large scale data search. Also benefit for log analysis and monitoring. Elasticsearch: store, compute, search data Inverted Index inverted index (also referred to as a postings list, postings file, or inverted file) is a database index storing a mapping from content, such as words or numbers, to its locations in a table, or in a document or a set of documents (named in contrast to]]></description>
+    </author><guid>http://example.org/%E4%B8%80%E4%BA%9B%E9%A1%B9%E7%9B%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93/</guid>
+    <description><![CDATA[接口幂等性的保证方法： 幂等性指多次调用同一接口获得的结果相同，此处考虑如何在高并发场景下限制其重复操作。 分布式锁，获取锁进行业务操作，可以使]]></description>
 </item><item>
-    <title>RabbitMQ</title>
-    <link>https://ljystu.github.io/rabbitmq/</link>
-    <pubDate>Sat, 18 Jun 2022 10:36:32 &#43;0100</pubDate><author>
+    <title>Mysql</title>
+    <link>http://example.org/db/</link>
+    <pubDate>Thu, 27 Oct 2022 11:35:32 &#43;0100</pubDate><author>
         <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/rabbitmq/</guid>
+    </author><guid>http://example.org/db/</guid>
+    <description><![CDATA[DB操作 主要来自菜鸟教程 A inner join B 取交集。 A left join B 取 A 全部，B 没有对应的值为 null。 A right join B 取 B 全部 A 没有对应的值为 null。 A full outer join B 取并]]></description>
+</item><item>
+    <title>Postgresql</title>
+    <link>http://example.org/postgresql/</link>
+    <pubDate>Mon, 10 Oct 2022 14:35:00 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>http://example.org/postgresql/</guid>
+    <description><![CDATA[大部分参考菜鸟教程 有意思的数据类型： tsvector，tsquery：方便的全文搜索特性 使用to构建全文 1 2 3 SELECT title FROM pgweb WHERE to_tsvector(&#39;english&#39;, body) @@ to_tsquery(&#39;english&#39;, &#39;friend&#39;); 创建复合类]]></description>
+</item><item>
+    <title>Spring</title>
+    <link>http://example.org/spring/</link>
+    <pubDate>Sun, 25 Sep 2022 11:44:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>http://example.org/spring/</guid>
+    <description><![CDATA[AOP AOP（Aspect orietend programming）面向切面编程 AOP是对OOP的一种完善，OOP引入了封装多台和继承来建立对象层次结构，但是对]]></description>
+</item><item>
+    <title>Computer Network</title>
+    <link>http://example.org/computer-network/</link>
+    <pubDate>Sun, 18 Sep 2022 19:59:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>http://example.org/computer-network/</guid>
+    <description><![CDATA[OSI 7层 ① 应用层 应用层位于 OSI 参考模型的第七层，其作用是通过应用程序间的交互来完成特定的网络应用。该层协议定义了应用进程之间的交互规则，通过不同]]></description>
+</item><item>
+    <title>Redis</title>
+    <link>http://example.org/redis/</link>
+    <pubDate>Thu, 15 Sep 2022 22:37:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>http://example.org/redis/</guid>
+    <description><![CDATA[缓存是什么？ 2.1.1 为什么要使用缓存 一句话:因为速度快,好用 缓存数据存储于代码中,而代码运行在内存中,内存的读写性能远高于磁盘,缓存可以大大降低用]]></description>
+</item><item>
+    <title>JVM</title>
+    <link>http://example.org/jvm/</link>
+    <pubDate>Fri, 02 Sep 2022 14:23:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>http://example.org/jvm/</guid>
+    <description><![CDATA[JVM stands for Java Virtual Machine. Write Once Run Anywhere Automatic memory management and garbage collection mechanism Array out of bounds detection Program counter register To store the address of next command in JVM. Features: Thread safe. Every thread has its own time slices and will be executed when it is its turn. No memory overflow problem. JVM stacks Allocated per thread as well Every thread in the JVM needs]]></description>
+</item><item>
+    <title>Elasticssearch</title>
+    <link>http://example.org/elasticsearch/</link>
+    <pubDate>Wed, 10 Aug 2022 13:53:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>http://example.org/elasticsearch/</guid>
+    <description><![CDATA[A powerful search engine for large scale data search. Also benefit for log analysis and monitoring. Elasticsearch: store, compute, search data Inverted Index(less memory and faster query) inverted index (also referred to as a postings list, postings file, or inverted file) is a database index storing a mapping from content, such as words or numbers, to its locations in a table, or in a document or a set of documents]]></description>
+</item><item>
+    <title>RabbbitMQ</title>
+    <link>http://example.org/rabbitmq/</link>
+    <pubDate>Wed, 10 Aug 2022 11:13:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>http://example.org/rabbitmq/</guid>
     <description><![CDATA[Decoupling Event-driven design better performance Problems with Synchronous communication(Feign): 1.Coupling 2.can not handle huge amount of requests in a short time(high concurrency). 3.Waste of resources during waiting 4.Cascade failure: service failed, the cluster fails cascadingly Asynchronous(Event driven design): Use Broker to control events. Service publish events and the others subscribed to the broker waiting for events. Better performance/No cascade failures Advantages of asynchronous communication: Low coupling Improve throughput Fault isolation]]></description>
 </item><item>
     <title>Redis distributed lock</title>
-    <link>https://ljystu.github.io/redis-distributed-lock/</link>
+    <link>http://example.org/redis-distributed-lock/</link>
     <pubDate>Wed, 18 May 2022 10:36:32 &#43;0100</pubDate><author>
         <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/redis-distributed-lock/</guid>
+    </author><guid>http://example.org/redis-distributed-lock/</guid>
     <description><![CDATA[Distributed lock Under highly concurrent environment, the distributed lock is used to ensure consistency in the database. Here&rsquo;s an example of this.
 Using simple lock:
 1 2 3 4 5 6 7 8 9  stringRedisTemplate.opsForValue().setIfAbsent(&#34;lockKey&#34;, &#34;ljy&#34;); // This is the simplest realization of lock in redis // But this lock will trigger deadlock when the service is down // adding delete won&#39;t help stringTemplate.delete(&#34;lockKey&#34;); // setting expiration time have problem as well stringRedisTemplate.]]></description>
-</item><item>
-    <title>Best Time to Buy and Sell Stock</title>
-    <link>https://ljystu.github.io/best-time-to-buy-and-sell-stock/</link>
-    <pubDate>Tue, 17 May 2022 10:36:32 &#43;0100</pubDate><author>
-        <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/best-time-to-buy-and-sell-stock/</guid>
-    <description><![CDATA[Redis Redis with pyrhon Simple example of how to use redis as Cache in python:
-If we want to store some info in cache(logo, name), we first can convert them into JSON format and assign a key, and store the info in cache.
-1 2 3  logo = get_logo() #maybe get logo from api json.dumps(logo) #convert to JSON logo_key = f&#34;{symbol}_logo&#34; #naming convention   When we need to use the info, we can first get it from the cache.]]></description>
-</item><item>
-    <title>Redis</title>
-    <link>https://ljystu.github.io/redis/</link>
-    <pubDate>Mon, 16 May 2022 10:36:32 &#43;0100</pubDate><author>
-        <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/redis/</guid>
-    <description><![CDATA[Redis Redis with python Simple example of how to use redis as Cache in python:
-If we want to store some info in cache(logo, name), we first can convert them into JSON format and assign a key, and store the info in cache.
-1 2 3  logo = get_logo() #maybe get logo from api json.dumps(logo) #convert to JSON logo_key = f&#34;{symbol}_logo&#34; #naming convention   When we need to use the info, we can first get it from the cache.]]></description>
-</item><item>
-    <title>Restore IP address</title>
-    <link>https://ljystu.github.io/restore-ip-address/</link>
-    <pubDate>Sat, 07 May 2022 10:36:32 &#43;0100</pubDate><author>
-        <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/restore-ip-address/</guid>
-    <description><![CDATA[Leetcode 93 https://leetcode-cn.com/problems/restore-ip-addresses/ A valid IP address consists of exactly four integers separated by single dots. Each integer is between 0 and 255 (inclusive) and cannot have leading zeros. For example, &ldquo;0.1.2.201&rdquo; and &ldquo;192.168.1.1&rdquo; are valid IP addresses, but &ldquo;0.011.255.245&rdquo;, &ldquo;192.168.1.312&rdquo; and &ldquo;192.168@1.1&rdquo; are invalid IP addresses. Given a string s containing only digits, return all possible valid IP addresses that can be formed by inserting dots into s. You]]></description>
-</item><item>
-    <title>backtracking summary</title>
-    <link>https://ljystu.github.io/%E5%9B%9E%E6%BA%AF%E6%80%BB%E7%BB%93/</link>
-    <pubDate>Fri, 06 May 2022 10:36:32 &#43;0100</pubDate><author>
-        <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/%E5%9B%9E%E6%BA%AF%E6%80%BB%E7%BB%93/</guid>
-    <description><![CDATA[回溯法，一般可以解决如下几种问题： 组合问题：N个数里面按一定规则找出k个数的集合 切割问题：一个字符串按一定规则有几种切割方式 子集问题：一个N]]></description>
-</item><item>
-    <title>Increasing Subsequence</title>
-    <link>https://ljystu.github.io/increasing-subsequences/</link>
-    <pubDate>Fri, 06 May 2022 10:36:32 &#43;0100</pubDate><author>
-        <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/increasing-subsequences/</guid>
-    <description><![CDATA[Leetcode 491 https://leetcode-cn.com/problems/increasing-subsequences/ Given an integer array nums, return all the different possible increasing subsequences of the given array with at least two elements. You may return the answer in any order. The given array may contain duplicates, and two equal integers should also be considered a special case of increasing sequence. Example 1: Input: nums = [4,6,7,7] Output: [[4,6],[4,6,7],[4,6,7,7],[4,7],[4,7,7],[6,7],[6,7,7],[7,7]] Example 2: Input: nums = [4,4,3,2,1] Output: [[4,4]] Constraints: 1]]></description>
-</item><item>
-    <title>Letter combination of a phone number</title>
-    <link>https://ljystu.github.io/letter-combinations-of-a-phone-number/</link>
-    <pubDate>Fri, 06 May 2022 10:36:32 &#43;0100</pubDate><author>
-        <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/letter-combinations-of-a-phone-number/</guid>
-    <description><![CDATA[Leetcode 17 https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
- Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order. A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
-Example 1:
-Input: digits = &ldquo;23&rdquo; Output: [&ldquo;ad&rdquo;,&ldquo;ae&rdquo;,&ldquo;af&rdquo;,&ldquo;bd&rdquo;,&ldquo;be&rdquo;,&ldquo;bf&rdquo;,&ldquo;cd&rdquo;,&ldquo;ce&rdquo;,&ldquo;cf&rdquo;] Example 2:
-Input: digits = &quot;&quot; Output: [] Example 3:]]></description>
-</item><item>
-    <title>Permutations II</title>
-    <link>https://ljystu.github.io/permutations-ii/</link>
-    <pubDate>Fri, 06 May 2022 10:36:32 &#43;0100</pubDate><author>
-        <name>Jingyu Li</name>
-    </author><guid>https://ljystu.github.io/permutations-ii/</guid>
-    <description><![CDATA[Leetcode 47 https://leetcode-cn.com/problems/permutations-ii/ Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order. Example 1: Input: nums = [1,1,2] Output: [[1,1,2], [1,2,1], [2,1,1]] Example 2: Input: nums = [1,2,3] Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] Constraints: 1 &lt;= nums.length &lt;= 8 -10 &lt;= nums[i] &lt;= 10 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20]]></description>
 </item></channel>
 </rss>

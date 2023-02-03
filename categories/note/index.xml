@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Note - Category - My New Hugo Site</title>
+        <link>http://example.org/categories/note/</link>
+        <description>Note - Category - My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>ljystu@gmail.com (Jingyu Li)</managingEditor>
+            <webMaster>ljystu@gmail.com (Jingyu Li)</webMaster><lastBuildDate>Mon, 26 Dec 2022 23:11:32 &#43;0100</lastBuildDate><atom:link href="http://example.org/categories/note/" rel="self" type="application/rss+xml" /><item>
+    <title>Notes</title>
+    <link>http://example.org/%E4%B8%80%E4%BA%9B%E9%A1%B9%E7%9B%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93/</link>
+    <pubDate>Mon, 26 Dec 2022 23:11:32 &#43;0100</pubDate><author>
+        <name>Jingyu Li</name>
+    </author><guid>http://example.org/%E4%B8%80%E4%BA%9B%E9%A1%B9%E7%9B%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%BB%E7%BB%93/</guid>
+    <description><![CDATA[接口幂等性的保证方法： 幂等性指多次调用同一接口获得的结果相同，此处考虑如何在高并发场景下限制其重复操作。 分布式锁，获取锁进行业务操作，可以使]]></description>
+</item></channel>
+</rss>
